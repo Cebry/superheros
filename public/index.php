@@ -10,4 +10,4 @@ require '../vendor/autoload.php';
 use App\Controller\DefaultController;
 
 $controller = new DefaultController();
-$controller->saludaAction();
+$controller->numerosAction();
