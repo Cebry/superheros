@@ -10,4 +10,8 @@ require '../vendor/autoload.php';
 use App\Controller\DefaultController;
 
 $controller = new DefaultController();
-$controller->numerosAction();
+
+if ($_SERVER['PATH_INFO'] == '/saludo')
+    $controller->saludaAction();
+else if ($_SERVER['PATH_INFO'] == '/numeros')
+    $controller->numerosAction();
