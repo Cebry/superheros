@@ -56,7 +56,7 @@ if ($route) {
     $controllerName = $route['action'][0];
     $actionName = $route['action'][1];
     $controller = new $controllerName;
-    $controller->$actionName($request);
+    $controller->$actionName();
 } else {
     echo "no route";
 }
