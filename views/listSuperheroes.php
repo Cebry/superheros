@@ -33,8 +33,8 @@
                 echo '<input type="number" name="velocidad" id="velocidad" value="' . $superhero['velocidad'] . '" readonly>';
                 echo '<input type="datetime" name="createdAt" id="createdAt" value="' . $superhero['created_at'] . '" readonly>';
                 echo '<input type="datetime" name="updatedAt" id="updatedAt" value="' . $superhero['updated_at'] . '" readonly>';
-                echo '<a href="/' . DIRBASEURL . '/sh/edit/' . $superhero['id'] . '">EDIT</a>';
-                echo '<a href="/' . DIRBASEURL . '/sh/del/' . $superhero['id'] . '">DELETE</a>';
+                echo '<a href="/' . DIRBASEURL . '/sh/edit/' . $superhero['id'] . '" class="update">EDIT</a>';
+                echo '<a href="/' . DIRBASEURL . '/sh/del/' . $superhero['id'] . '" class="delete">DELETE</a>';
                 echo '</form>';
             }
             ?>
