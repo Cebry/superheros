@@ -6,25 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.4">
     <meta name="author" content="Javier Cebrián Muñoz">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/proyecto/public/css/normalize.css">
-    <link rel="stylesheet" href="/proyecto/public/css/styles.css">
+    <link rel="stylesheet" href="/superheroes/public/css/normalize.css">
+    <link rel="stylesheet" href="/superheroes/public/css/styles.css">
     <!-- <script src="js/script.js"></script> -->
-    <title>Edit Superhero</title>
+    <title>Delete Superhero</title>
 </head>
 
 <body>
     <header>
-        <h1>Edit Superhero</h1>
+        <h1>Delete Superhero</h1>
     </header>
     <main>
         <form action="" method="post" class="card">
             <input type="number" name="id" id="id" value="<?php echo $data['id'] ?>" readonly>
-            <input type="text" name="name" id="name" value="<?php echo $data['nombre'] ?>">
-            <input type="number" name="speed" id="speed" value="<?php echo $data['velocidad'] ?>">
-            <input type="datetime" name="createdAt" id="createdAt" value="<?php echo $data['created_at'] ?> " readonly>
+            <input type="text" name="nombre" id="nombre" value="<?php echo $data['name'] ?>" readonly>
+            <input type="datetime" name="createdAt" id="createdAt" value="<?php echo $data['created_at'] ?>" readonly>
             <input type="datetime" name="updatedAt" id="updatedAt" value="<?php echo $data['updated_at'] ?>" readonly>
-            <button type="submit" name="submit" value="update">Update</button>
+            <button type=" submit" name="submit" value="delete">Delete</button>
         </form>
+        <!-- TODO abilities -->
     </main>
 
 </body>

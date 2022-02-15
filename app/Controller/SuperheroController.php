@@ -2,59 +2,55 @@
 
 namespace App\Controller;
 
-//Use clases que utilizo
-use App\Models\Superhero;
-
+use App\Models\SuperheroModel;
 
 class SuperheroController extends BaseController
 {
-    function homeAction()
+    function listAction()
     {
-        $sh = new Superhero();
+        $sh = new SuperheroModel();
         $data = $sh->readLastPage();
-        $this->renderHTML('../views/listSuperheroes.php', $data);
+        $this->renderHTML('../views/superhero/list.php', $data);
     }
 
-    function editSuperheroAction()
+    function editAction($request)
     {
-        $sh = new Superhero();
+        $sh = new SuperheroModel();
         if (!isset($_POST['submit'])) {
-            $id =  basename($_SERVER['PATH_INFO'], "/sh/edit/");
+            $id =  basename($request, "/sh/edit/");
             $data = $sh->read($id);
-            $this->renderHTML('../views/editSuperhero.php', $data[0]);
+            $this->renderHTML('../views/superhero/edit.php', $data[0]);
         } else {
             if ($_POST['submit'] == 'update') {
                 $sh->setId($_POST['id']);
                 $sh->setName($_POST['name']);
-                $sh->setSpeed($_POST['speed']);
                 $sh->update();
             }
             header('location: /' . DIRBASEURL);
         }
     }
 
-    function insertSuperheroAction()
+    function insertAction()
     {
-        $sh = new Superhero();
+        $sh = new SuperheroModel();
         if (!isset($_POST['submit'])) {
-            $this->renderHTML('../views/insertSuperhero.php');
+            $this->renderHTML('../views/superhero/insert.php');
         } else {
             if ($_POST['submit'] == 'insert') {
                 $sh->setName($_POST['name']);
-                $sh->setSpeed($_POST['speed']);
                 $sh->insert();
             }
             header('location: /' . DIRBASEURL);
         }
     }
 
-    function deleteSuperheroAction()
+    function deleteAction($request)
     {
-        $sh = new Superhero();
+        $sh = new SuperheroModel();
         if (!isset($_POST['submit'])) {
-            $id =  basename($_SERVER['PATH_INFO'], "/sh/del/");
+            $id =  basename($request, "/sh/del/");
             $data = $sh->read($id);
-            $this->renderHTML('../views/deleteSuperhero.php', $data[0]);
+            $this->renderHTML('../views/superhero/delete.php', $data[0]);
         } else {
             if ($_POST['submit'] == 'delete') {
                 $sh->setId($_POST['id']);

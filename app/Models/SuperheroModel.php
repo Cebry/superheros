@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\DBAbstractModel;
 
-class Superhero extends DBAbstractModel
+class SuperheroModel extends DBAbstractModel
 {
     private static $instance;
     public static function getInstance()
@@ -16,35 +16,48 @@ class Superhero extends DBAbstractModel
         return self::$instance;
     }
 
-    private static $createQuery = "INSERT INTO superheroes(nombre, velocidad) VALUES(:nombre, :velocidad)";
-    private static $readByIdQuery = "SELECT * FROM superheroes WHERE id = :id";
-    private static $readByNameQuery = "SELECT * FROM superheroes WHERE nombre LIKE CONCAT('%', :name, '%')";
-    private static $readAllQuery = "SELECT * FROM superheroes";
-    private static $updateQuery = "UPDATE superheroes SET nombre=:nombre, velocidad=:velocidad WHERE id = :id";
-    private static $deleteQuery = "DELETE FROM superheroes WHERE id = :id";
-    // private static $readPageQuery = "SELECT * FROM superheroes ORDER BY id LIMIT :min, :max";
-    private static $readPageQuery = "SELECT * FROM superheroes ORDER BY id LIMIT ";
-    // private static $readLastPageQuery = "SELECT * FROM superheroes ORDER BY id DESC LIMIT :shpage";
-    private static $readLastPageQuery = "SELECT * FROM superheroes ORDER BY id DESC LIMIT " . SHPORPAGINA;
+    private static $createQuery = "INSERT INTO superhero(name, image, evolution, idUser) VALUES(:name, :image, :evolution, :idUser)";
+    private static $readByIdQuery = "SELECT * FROM superhero WHERE id = :id";
+    private static $readByNameQuery = "SELECT * FROM superhero WHERE nombre LIKE CONCAT('%', :name, '%')";
+    private static $readAllQuery = "SELECT * FROM superhero";
+    private static $updateQuery = "UPDATE superheroe SET name=:name, image=:image, evolution=:evolution, iduser=:idUser WHERE id = :id";
+    private static $deleteQuery = "DELETE FROM superhero WHERE id = :id";
+    // private static $readPageQuery = "SELECT * FROM superhero ORDER BY id LIMIT :min, :max";
+    // private static $readPageQuery = "SELECT * FROM superhero ORDER BY id LIMIT ";
+    // private static $readLastPageQuery = "SELECT * FROM superhero ORDER BY id DESC LIMIT :shpage";
+    private static $readLastPageQuery = "SELECT * FROM superhero ORDER BY id DESC LIMIT " . SHPERPAGE;
 
-    var $id;
-    var $name;
-    var $speed;
-    var $createdAt;
-    var $updatedAt;
+    private $id;
+    private $name;
+    private $image;
+    private $evolution;
+    private $idUser;
+    private $createdAt;
+    private $updatedAt;
 
     public function setId($id)
     {
         $this->id = $id;
     }
+
     public function setName($name)
     {
         $this->name = $name;
     }
 
-    public function setSpeed($speed)
+    public function setImage($image)
     {
-        $this->speed = $speed;
+        $this->image = $image;
+    }
+
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getName()
@@ -52,9 +65,19 @@ class Superhero extends DBAbstractModel
         return $this->name;
     }
 
-    public function getSpeed()
+    public function getImage()
     {
-        return $this->speed;
+        return $this->image;
+    }
+
+    public function getEvolution()
+    {
+        return $this->evolution;
+    }
+
+    public function getIdUser()
+    {
+        return $this->idUser;
     }
 
     public function getCreatedAt()
@@ -70,8 +93,10 @@ class Superhero extends DBAbstractModel
     public function insert()
     {
         $this->query = self::$createQuery;
-        $this->parameters['nombre'] = $this->name;
-        $this->parameters['velocidad'] = $this->speed;
+        $this->parameters['name'] = $this->getName();
+        $this->parameters['image'] = $this->getImage();
+        $this->parameters['evolution'] = $this->getEvolution();
+        $this->parameters['idUser'] = $this->getIdUser();
         $this->get_results_from_query();
         $this->message = 'SH agregado correctamente';
     }
@@ -119,9 +144,11 @@ class Superhero extends DBAbstractModel
     public function update()
     {
         $this->query = self::$updateQuery;
-        $this->parameters['id'] = $this->id;
-        $this->parameters['nombre'] = $this->name;
-        $this->parameters['velocidad'] = $this->speed;
+        $this->parameters['id'] = $this->getId();
+        $this->parameters['name'] = $this->getName();
+        $this->parameters['image'] = $this->getImage();
+        $this->parameters['evolution'] = $this->getEvolution();
+        $this->parameters['idUser'] = $this->getIdUser();
 
         $this->get_results_from_query();
         $this->message = 'SH modificado';
@@ -130,7 +157,7 @@ class Superhero extends DBAbstractModel
     public function delete()
     {
         $this->query = self::$deleteQuery;
-        $this->parameters['id'] = $this->id;
+        $this->parameters['id'] = $this->getId();
 
         $this->get_results_from_query();
         $this->message = 'SH eliminado';
@@ -140,20 +167,6 @@ class Superhero extends DBAbstractModel
     {
         $this->query = self::$readLastPageQuery;
         //$this->parameters['shpage'] = SHPORPAGINA;
-        $this->get_results_from_query();
-        return $this->rows;
-    }
-
-    public function readPage($page)
-    {
-        var_dump($page);
-        $page = substr($page, 0, -2);
-        var_dump($page);
-        $minRowNumber = $page * SHPORPAGINA;
-        $maxRowNumber = $page * SHPORPAGINA + $page * SHPORPAGINA;
-        // $this->parameters['min'] = $page * SHPORPAGINA;
-        // $this->parameters['max'] = $page * SHPORPAGINA + $page * SHPORPAGINA;
-        $this->query = self::$readPageQuery . $minRowNumber . ", " . $maxRowNumber;
         $this->get_results_from_query();
         return $this->rows;
     }

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.4">
     <meta name="author" content="Javier Cebrián Muñoz">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/proyecto/public/css/normalize.css">
-    <link rel="stylesheet" href="/proyecto/public/css/styles.css">
+    <link rel="stylesheet" href="/superheroes/public/css/normalize.css">
+    <link rel="stylesheet" href="/superheroes/public/css/styles.css">
     <!-- <script src="js/script.js"></script> -->
     <title>Superheroes</title>
 </head>
@@ -19,8 +19,8 @@
 
     <nav>
         <ul>
-            <li><a href="/proyecto/public/index.php/sh/add">NEW</a>
-            </li>
+            <li>
+                <?php echo '<a href="/' . DIRBASEURL . '/sh/add' . '" class="add">NEW</a>'; ?> </li>
         </ul>
     </nav>
     <main>
@@ -29,8 +29,7 @@
             foreach ($data as $superhero) {
                 echo '<form action="" method="post" class="card">';
                 echo '<input type="number" name="id" id="id" value="' . $superhero['id'] . '" readonly>';
-                echo '<input type="text" name="nombre" id="nombre" value="' . $superhero['nombre'] . '" readonly>';
-                echo '<input type="number" name="velocidad" id="velocidad" value="' . $superhero['velocidad'] . '" readonly>';
+                echo '<input type="text" name="nombre" id="nombre" value="' . $superhero['name'] . '" readonly>';
                 echo '<input type="datetime" name="createdAt" id="createdAt" value="' . $superhero['created_at'] . '" readonly>';
                 echo '<input type="datetime" name="updatedAt" id="updatedAt" value="' . $superhero['updated_at'] . '" readonly>';
                 echo '<a href="/' . DIRBASEURL . '/sh/edit/' . $superhero['id'] . '" class="update">EDIT</a>';
@@ -38,6 +37,7 @@
                 echo '</form>';
             }
             ?>
+            <!-- TODO abilities -->
         </section>
 
     </main>
