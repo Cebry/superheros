@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Models\AbilityModel;
+use App\Models\SuperheroAbilityModel;
 use App\Models\SuperheroModel;
 
 class SuperheroController extends BaseController
@@ -26,21 +28,36 @@ class SuperheroController extends BaseController
                 $sh->setName($_POST['name']);
                 $sh->update();
             }
-            header('location: /' . DIRBASEURL);
+            header('location: /sh/list');
         }
     }
 
     function insertAction()
     {
         $sh = new SuperheroModel();
+
+        $am = new AbilityModel;
+        $allAbilities = $am->readAll();
+
         if (!isset($_POST['submit'])) {
-            $this->renderHTML('../views/superhero/insert.php');
+
+            $this->renderHTML('../views/superhero/insert.php', $allAbilities);
         } else {
             if ($_POST['submit'] == 'insert') {
                 $sh->setName($_POST['name']);
                 $sh->insert();
+                $sam = new SuperheroAbilityModel();
+                foreach ($allAbilities as $ability) {
+                    $abilityName = $ability['name'];
+                    if ($_POST[$abilityName] != 0) {
+                        $sam->setIdAbility($ability['id']);
+                        $sam->setIdSuperhero($sh->getId());
+                        $sam->setValue($_POST[$abilityName]);
+                        $sam->insert();
+                    }
+                }
             }
-            header('location: /' . DIRBASEURL);
+            header('location: /sh/list');
         }
     }
 
@@ -56,7 +73,7 @@ class SuperheroController extends BaseController
                 $sh->setId($_POST['id']);
                 $sh->delete();
             }
-            header('location: /' . DIRBASEURL);
+            header('location: /sh/list');
         }
     }
 }

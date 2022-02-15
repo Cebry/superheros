@@ -27,7 +27,7 @@ class UserController extends BaseController
                 $us->setPsw($_POST['psw']);
                 $us->update();
             }
-            header('location: /' . DIRBASEURL . '/user/list');
+            header('location: /user/list');
         }
     }
 
@@ -42,7 +42,7 @@ class UserController extends BaseController
                 $us->setPsw($_POST['psw']);
                 $us->insert();
             }
-            header('location: /' . DIRBASEURL . '/user/list');
+            header('location: /user/list');
         }
     }
 
@@ -58,7 +58,7 @@ class UserController extends BaseController
                 $us->setId($_POST['id']);
                 $us->delete();
             }
-            header('location: /' . DIRBASEURL . '/user/list');
+            header('location: /user/list');
         }
     }
 }

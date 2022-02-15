@@ -26,7 +26,7 @@ class AbilityController extends BaseController
                 $ab->setName($_POST['name']);
                 $ab->update();
             }
-            header('location: /' . DIRBASEURL . '/ability/list');
+            header('location: /ability/list');
         }
     }
 
@@ -40,7 +40,7 @@ class AbilityController extends BaseController
                 $ab->setName($_POST['name']);
                 $ab->insert();
             }
-            header('location: /' . DIRBASEURL . '/ability/list');
+            header('location: /ability/list');
         }
     }
 
@@ -56,7 +56,7 @@ class AbilityController extends BaseController
                 $ab->setId($_POST['id']);
                 $ab->delete();
             }
-            header('location: /' . DIRBASEURL . '/ability/list');
+            header('location: /ability/list');
         }
     }
 }

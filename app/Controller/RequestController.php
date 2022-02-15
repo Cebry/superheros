@@ -30,7 +30,7 @@ class RequestController extends BaseController
                 $us->setIdCitizen($_POST['idCitizen']);
                 $us->update();
             }
-            header('location: /' . DIRBASEURL . '/request/list');
+            header('location: /request/list');
         }
     }
 
@@ -48,7 +48,7 @@ class RequestController extends BaseController
                 $us->setIdCitizen($_POST['idCitizen']);
                 $us->insert();
             }
-            header('location: /' . DIRBASEURL . '/request/list');
+            header('location: /request/list');
         }
     }
 
@@ -64,7 +64,7 @@ class RequestController extends BaseController
                 $us->setId($_POST['id']);
                 $us->delete();
             }
-            header('location: /' . DIRBASEURL . '/request/list');
+            header('location: /request/list');
         }
     }
 }

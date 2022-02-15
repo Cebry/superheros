@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.4">
     <meta name="author" content="Javier Cebrián Muñoz">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/superheroes/public/css/normalize.css">
-    <link rel="stylesheet" href="/superheroes/public/css/styles.css">
+    <?php include "../views/styles.php"; ?>
     <!-- <script src="js/script.js"></script> -->
-    <title>Add User</title>
+    <title>Add Citizen</title>
 </head>
 
 <body>
     <header>
-        <h1>Add User</h1>
+        <h1>Add Citizen</h1>
     </header>
     <?php include "../views/nav.php"; ?>
     <main>

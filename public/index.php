@@ -171,8 +171,7 @@ $router->add(array(
 //     'path' => '/^\/request\/close\/[0-9]{1,}$/',
 //     'action' => [RequestController::class, 'closeAction']
 // ));
-
-$request = str_replace(DIRBASEURL, '', $_SERVER['PATH_INFO']);
+$request = $_SERVER['REQUEST_URI'];
 $route = $router->match($request);
 
 if ($route) {

@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.4">
     <meta name="author" content="Javier Cebrián Muñoz">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/superheroes/public/css/normalize.css">
-    <link rel="stylesheet" href="/superheroes/public/css/styles.css">
+    <?php include "../views/styles.php"; ?>
     <!-- <script src="js/script.js"></script> -->
     <title>Requests</title>
 </head>
@@ -19,7 +18,7 @@
     <?php include "../views/nav.php"; ?>
     <main>
         <section>
-            <?php echo '<a href="/' . DIRBASEURL . '/request/add' . '" class="add">NEW</a>'; ?>
+            <?php echo '<a href="/request/add' . '" class="add">NEW</a>'; ?>
             <?php
             foreach ($data as $request) {
                 echo '<form action="" method="post" class="card">';
@@ -31,8 +30,8 @@
                 echo '<input type="text" name="idCitizen" id="idCitizen" value="' . $request['idCitizen'] . '" readonly>';
                 echo '<input type="datetime" name="createdAt" id="createdAt" value="' . $request['created_at'] . '" readonly>';
                 echo '<input type="datetime" name="updatedAt" id="updatedAt" value="' . $request['updated_at'] . '" readonly>';
-                echo '<a href="/' . DIRBASEURL . '/request/edit/' . $request['id'] . '" class="update">EDIT</a>';
-                echo '<a href="/' . DIRBASEURL . '/request/del/' . $request['id'] . '" class="delete">DELETE</a>';
+                echo '<a href="/request/edit/' . $request['id'] . '" class="update">EDIT</a>';
+                echo '<a href="/request/del/' . $request['id'] . '" class="delete">DELETE</a>';
                 echo '</form>';
             }
             ?>
