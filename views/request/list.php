@@ -16,15 +16,10 @@
     <header>
         <h1>Requests</h1>
     </header>
-
-    <nav>
-        <ul>
-            <li>
-                <?php echo '<a href="/' . DIRBASEURL . '/request/add' . '" class="add">NEW</a>'; ?> </li>
-        </ul>
-    </nav>
+    <?php include "../views/nav.php"; ?>
     <main>
         <section>
+            <?php echo '<a href="/' . DIRBASEURL . '/request/add' . '" class="add">NEW</a>'; ?>
             <?php
             foreach ($data as $request) {
                 echo '<form action="" method="post" class="card">';

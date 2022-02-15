@@ -16,15 +16,10 @@
     <header>
         <h1>Citizens</h1>
     </header>
-
-    <nav>
-        <ul>
-            <li>
-                <?php echo '<a href="/' . DIRBASEURL . '/citizen/add' . '" class="add">NEW</a>'; ?> </li>
-        </ul>
-    </nav>
+    <?php include "../views/nav.php"; ?>
     <main>
         <section>
+            <?php echo '<a href="/' . DIRBASEURL . '/citizen/add' . '" class="add">NEW</a>'; ?>
             <?php
             foreach ($data as $citizen) {
                 echo '<form action="" method="post" class="card">';
