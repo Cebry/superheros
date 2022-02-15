@@ -9,6 +9,11 @@ figure {
     margin: 0;
 }
 
+nav>ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 body {
     display: flex;
     min-height: 100vh;
