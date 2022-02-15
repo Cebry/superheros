@@ -16,6 +16,7 @@
     <header>
         <h1>Edit Citizen</h1>
     </header>
+    <?php include "../views/nav.php"; ?>
     <main>
         <form action="" method="post" class="card">
 

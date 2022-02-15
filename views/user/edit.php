@@ -16,6 +16,7 @@
     <header>
         <h1>Edit User</h1>
     </header>
+    <?php include "../views/nav.php"; ?>
     <main>
         <form action="" method="post" class="card">
             <input type="number" name="id" id="id" value="<?php echo $data['id'] ?>" readonly>

@@ -16,6 +16,7 @@
     <header>
         <h1>Add Request</h1>
     </header>
+    <?php include "../views/nav.php"; ?>
     <main>
         <?php
         echo '<form action="" method="post">';
