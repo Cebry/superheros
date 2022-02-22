@@ -20,12 +20,12 @@
             <span>name</span>
             <span>actions</span>
         </div>
-        <?php
-        echo '<form action="" method="post" class="card grid columns-2">';
-        echo '<input type="text" name="name" id="name" value="">';
-        echo '<button type="submit" name="submit" value="insert">Insert</button>';
-        echo '</form>';
-        ?>
+
+        <form action="" method="post" class="card grid columns-2">
+            <input type="text" name="name" id="name" value="">
+            <button type="submit" name="submit" value="insert">Insert</button>
+        </form>
+
     </main>
 
 </body>

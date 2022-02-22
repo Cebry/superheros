@@ -17,13 +17,13 @@
     </header>
     <?php include "../views/nav.php"; ?>
     <main>
-        <?php
-        echo '<form action="" method="post">';
-        echo '<input type="text" name="user" id="user" value="">';
-        echo '<input type="text" name="psw" id="psw" value="">';
-        echo '<button type="submit" name="submit" value="insert">Insert</button>';
-        echo '</form>';
-        ?>
+
+        <form action="" method="post">
+            <input type="text" name="user" id="user" value="">
+            <input type="text" name="psw" id="psw" value="">
+            <button type="submit" name="submit" value="insert">Insert</button>
+        </form>';
+
     </main>
 
 </body>

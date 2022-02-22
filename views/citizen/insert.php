@@ -23,14 +23,14 @@
             <span>id-user</span>
             <span>actions</span>
         </div>
-        <?php
-        echo '<form action="" method="post" class="card grid columns-4">';
-        echo '<input type="text" name="name" id="name" value="">';
-        echo '<input type="text" name="email" id="email" value="">';
-        echo '<input type="text" name="idUser" id="idUser" value="">';
-        echo '<button type="submit" name="submit" value="insert">Insert</button>';
-        echo '</form>';
-        ?>
+
+        <form action="" method="post" class="card grid columns-4">
+            <input type="text" name="name" id="name" value="">
+            <input type="text" name="email" id="email" value="">
+            <input type="text" name="idUser" id="idUser" value="">
+            <button type="submit" name="submit" value="insert">Insert</button>
+        </form>';
+
     </main>
 
 </body>
