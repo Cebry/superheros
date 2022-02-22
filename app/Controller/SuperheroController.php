@@ -37,17 +37,17 @@ class SuperheroController extends BaseController
         $sh = new SuperheroModel();
 
         $am = new AbilityModel;
-        $allAbilities = $am->readAll();
+        $data = $am->readAll();
 
         if (!isset($_POST['submit'])) {
 
-            $this->renderHTML('../views/superhero/insert.php', $allAbilities);
+            $this->renderHTML('../views/superhero/insert.php', $data);
         } else {
             if ($_POST['submit'] == 'insert') {
                 $sh->setName($_POST['name']);
                 $sh->insert();
                 $sam = new SuperheroAbilityModel();
-                foreach ($allAbilities as $ability) {
+                foreach ($data as $ability) {
                     $abilityName = $ability['name'];
                     if ($_POST[$abilityName] != 0) {
                         $sam->setIdAbility($ability['id']);

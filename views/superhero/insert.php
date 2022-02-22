@@ -17,14 +17,17 @@
     </header>
     <?php include "../views/nav.php"; ?>
     <main>
-        <?php
-        echo '<form action="" method="post">';
-        echo '<input type="text" name="name" id="name" value="">';
-        echo '<button type="submit" name="submit" value="insert">Insert</button>';
-        echo '</form>';
-        ?>
 
-        <!-- TODO abilities -->
+        <form action="" method="post">
+            <input type="text" name="name" id="name" value="">
+            <?php
+            foreach ($data as $ability) {
+                echo '<label for="' . $ability['name'] . '">' . $ability['name'] . '</label>';
+                echo '<input type="number" name="' . $ability['name'] . '" id="' . $ability['name'] . '">';
+            }
+            ?>
+            <button type="submit" name="submit" value="insert">Insert</button>
+        </form>
     </main>
 
 </body>
