@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Models\AbilityModel;
-use App\Models\SuperheroAbilityModel;
 use App\Models\SuperheroModel;
 
 class SuperheroController extends BaseController
@@ -26,6 +25,9 @@ class SuperheroController extends BaseController
             if ($_POST['submit'] == 'update') {
                 $sh->setId($_POST['id']);
                 $sh->setName($_POST['name']);
+                $sh->setImage($_POST['image']);
+                $sh->setEvolution($_POST['evolution']);
+                $sh->setIdUser($_POST['id_user']);
                 $sh->update();
             }
             header('location: /sh/list');
@@ -45,17 +47,10 @@ class SuperheroController extends BaseController
         } else {
             if ($_POST['submit'] == 'insert') {
                 $sh->setName($_POST['name']);
+                $sh->setImage($_POST['image']);
+                $sh->setEvolution($_POST['evolution']);
+                $sh->setIdUser($_POST['id_user']);
                 $sh->insert();
-                $sam = new SuperheroAbilityModel();
-                foreach ($data as $ability) {
-                    $abilityName = $ability['name'];
-                    if ($_POST[$abilityName] != 0) {
-                        $sam->setIdAbility($ability['id']);
-                        $sam->setIdSuperhero($sh->getId());
-                        $sam->setValue($_POST[$abilityName]);
-                        $sam->insert();
-                    }
-                }
             }
             header('location: /sh/list');
         }

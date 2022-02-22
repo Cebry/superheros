@@ -16,11 +16,11 @@ class SuperheroModel extends DBAbstractModel
         return self::$instance;
     }
 
-    private static $createQuery = "INSERT INTO superhero(name, image, evolution, idUser) VALUES(:name, :image, :evolution, :idUser)";
+    private static $createQuery = "INSERT INTO superhero(name, image, evolution, id_user) VALUES(:name, :image, :evolution, :id_user)";
     private static $readByIdQuery = "SELECT * FROM superhero WHERE id = :id";
     private static $readByNameQuery = "SELECT * FROM superhero WHERE nombre LIKE CONCAT('%', :name, '%')";
     private static $readAllQuery = "SELECT * FROM superhero";
-    private static $updateQuery = "UPDATE superheroe SET name=:name, image=:image, evolution=:evolution, iduser=:idUser WHERE id = :id";
+    private static $updateQuery = "UPDATE superhero SET name=:name, image=:image, evolution=:evolution, id_user=:id_user WHERE id = :id";
     private static $deleteQuery = "DELETE FROM superhero WHERE id = :id";
     // private static $readPageQuery = "SELECT * FROM superhero ORDER BY id LIMIT :min, :max";
     // private static $readPageQuery = "SELECT * FROM superhero ORDER BY id LIMIT ";
@@ -48,6 +48,11 @@ class SuperheroModel extends DBAbstractModel
     public function setImage($image)
     {
         $this->image = $image;
+    }
+
+    public function setEvolution($evolution)
+    {
+        $this->evolution = $evolution;
     }
 
     public function setIdUser($idUser)
@@ -96,7 +101,7 @@ class SuperheroModel extends DBAbstractModel
         $this->parameters['name'] = $this->getName();
         $this->parameters['image'] = $this->getImage();
         $this->parameters['evolution'] = $this->getEvolution();
-        $this->parameters['idUser'] = $this->getIdUser();
+        $this->parameters['id_user'] = $this->getIdUser();
         $this->get_results_from_query();
         $this->message = 'SH agregado correctamente';
     }
@@ -148,7 +153,7 @@ class SuperheroModel extends DBAbstractModel
         $this->parameters['name'] = $this->getName();
         $this->parameters['image'] = $this->getImage();
         $this->parameters['evolution'] = $this->getEvolution();
-        $this->parameters['idUser'] = $this->getIdUser();
+        $this->parameters['id_user'] = $this->getIdUser();
 
         $this->get_results_from_query();
         $this->message = 'SH modificado';

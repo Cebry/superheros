@@ -17,15 +17,18 @@
     </header>
     <?php include "../views/nav.php"; ?>
     <main>
-
-        <form action="" method="post">
+        <div class="card grid columns-5">
+            <span>name</span>
+            <span>image</span>
+            <span>evolution</span>
+            <span>id_user</span>
+            <span>actions</span>
+        </div>
+        <form action="" method="post" class="card grid columns-5">
             <input type="text" name="name" id="name" value="">
-            <?php
-            foreach ($data as $ability) {
-                echo '<label for="' . $ability['name'] . '">' . $ability['name'] . '</label>';
-                echo '<input type="number" name="' . $ability['name'] . '" id="' . $ability['name'] . '">';
-            }
-            ?>
+            <input type="text" name="image" id="image" value="">
+            <input type="text" name="evolution" id="evolution" value="">
+            <input type="number" name="id_user" id="id_user" value="">
             <button type="submit" name="submit" value="insert">Insert</button>
         </form>
     </main>
