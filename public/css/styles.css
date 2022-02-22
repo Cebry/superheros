@@ -114,3 +114,7 @@ input {
 .columns-7 {
     grid-template-columns: repeat(7, 1fr);
 }
+
+.columns-9 {
+    grid-template-columns: repeat(9, 1fr);
+}

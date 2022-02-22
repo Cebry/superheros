@@ -17,11 +17,22 @@
     </header>
     <?php include "../views/nav.php"; ?>
     <main>
+        <?php echo '<a href="/request/add' . '" class="add">NEW</a>'; ?>
+        <div class="card grid columns-9">
+            <span>id</span>
+            <span>title</span>
+            <span>description</span>
+            <span>done</span>
+            <span>id-superhero</span>
+            <span>id-citizen</span>
+            <span>created-at</span>
+            <span>updated-at</span>
+            <span>actions</span>
+        </div>
         <section>
-            <?php echo '<a href="/request/add' . '" class="add">NEW</a>'; ?>
             <?php
             foreach ($data as $request) {
-                echo '<form action="" method="post" class="card">';
+                echo '<form action="" method="post" class="card grid columns-9">';
                 echo '<input type="number" name="id" id="id" value="' . $request['id'] . '" readonly>';
                 echo '<input type="text" name="title" id="title" value="' . $request['title'] . '" readonly>';
                 echo '<input type="text" name="description" id="description" value="' . $request['description'] . '" readonly>';
@@ -30,8 +41,10 @@
                 echo '<input type="text" name="idCitizen" id="idCitizen" value="' . $request['idCitizen'] . '" readonly>';
                 echo '<input type="datetime" name="createdAt" id="createdAt" value="' . $request['created_at'] . '" readonly>';
                 echo '<input type="datetime" name="updatedAt" id="updatedAt" value="' . $request['updated_at'] . '" readonly>';
+                echo '<div>';
                 echo '<a href="/request/edit/' . $request['id'] . '" class="update">EDIT</a>';
                 echo '<a href="/request/del/' . $request['id'] . '" class="delete">DELETE</a>';
+                echo '</div>';
                 echo '</form>';
             }
             ?>

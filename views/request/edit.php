@@ -17,7 +17,18 @@
     </header>
     <?php include "../views/nav.php"; ?>
     <main>
-        <form action="" method="post" class="card">
+        <div class="card grid columns-9">
+            <span>id</span>
+            <span>title</span>
+            <span>description</span>
+            <span>done</span>
+            <span>id-superhero</span>
+            <span>id-citizen</span>
+            <span>created-at</span>
+            <span>updated-at</span>
+            <span>actions</span>
+        </div>
+        <form action="" method="post" class="card grid columns-9">
             <input type="number" name="id" id="id" value="<?php echo $data['id'] ?>" readonly>
             <input type="text" name="title" id="title" value="<?php echo $data['title'] ?>">
             <input type="text" name="description" id="description" value="<?php echo $data['description'] ?>">

@@ -17,16 +17,23 @@
     </header>
     <?php include "../views/nav.php"; ?>
     <main>
-        <?php
-        echo '<form action="" method="post">';
-        echo '<input type="text" name="title" id="title" value="">';
-        echo '<input type="text" name="description" id="description" value="">';
-        echo '<input type="text" name="done" id="done" value="">';
-        echo '<input type="number" name="idSuperhero" id="idSuperhero" value="">';
-        echo '<input type="number" name="idCitizen" id="idCitizen" value="">';
-        echo '<button type="submit" name="submit" value="insert">Insert</button>';
-        echo '</form>';
-        ?>
+        <div class="card grid columns-6">
+            <span>title</span>
+            <span>description</span>
+            <span>done</span>
+            <span>id-superhero</span>
+            <span>id-citizen</span>
+            <span>actions</span>
+        </div>
+        <form action="" method="post" class="card grid columns-6">'
+            <input type="text" name="title" id="title" value="">
+            <input type="text" name="description" id="description" value="">
+            <input type="text" name="done" id="done" value="">
+            <input type="number" name="idSuperhero" id="idSuperhero" value="">
+            <input type="number" name="idCitizen" id="idCitizen" value="">
+            <button type="submit" name="submit" value="insert">Insert</button>
+        </form>
+
     </main>
 </body>
 
