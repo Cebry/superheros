@@ -1,2 +1,2 @@
-<link rel="stylesheet" href="/superheroes/public/css/normalize.css">
-<link rel="stylesheet" href="/superheroes/public/css/styles.css">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/styles.css">
