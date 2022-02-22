@@ -94,3 +94,15 @@ form {
 input {
     min-width: 1rem;
 }
+
+.grid {
+    display: grid;
+}
+
+.columns-5 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.columns-2 {
+    grid-template-columns: repeat(2, 1fr);
+}

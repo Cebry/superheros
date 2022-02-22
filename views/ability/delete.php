@@ -16,7 +16,14 @@
         <h1>Delete Ability</h1>
     </header>
     <main>
-        <form action="" method="post" class="card">
+        <div class="card grid columns-5">
+            <span>id</span>
+            <span>name</span>
+            <span>created-at</span>
+            <span>updated-at</span>
+            <span>actions</span>
+        </div>
+        <form action="" method="post" class="card grid columns-5">
             <input type="number" name="id" id="id" value="<?php echo $data['id'] ?>" readonly>
             <input type="text" name="nombre" id="nombre" value="<?php echo $data['name'] ?>" readonly>
             <input type="datetime" name="createdAt" id="createdAt" value="<?php echo $data['created_at'] ?>" readonly>
