@@ -15,6 +15,7 @@
     <header>
         <h1>Edit Ability</h1>
     </header>
+    <?php include "../views/nav.php"; ?>
     <main>
         <div class="card grid columns-5">
             <span>id</span>

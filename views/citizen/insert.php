@@ -15,8 +15,8 @@
     <header>
         <h1>Add Citizen</h1>
     </header>
+    <?php include "../views/nav.php"; ?>
     <main>
-        <?php include "../views/nav.php"; ?>
         <div class="card grid columns-4">
             <span>name</span>
             <span>email</span>

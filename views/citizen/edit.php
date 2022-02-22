@@ -15,8 +15,8 @@
     <header>
         <h1>Edit Citizen</h1>
     </header>
+    <?php include "../views/nav.php"; ?>
     <main>
-        <?php include "../views/nav.php"; ?>
         <div class="card grid columns-7">
             <span>id</span>
             <span>name</span>
