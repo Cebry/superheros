@@ -15,9 +15,18 @@
     <header>
         <h1>Delete Citizen</h1>
     </header>
-    <?php include "../views/nav.php"; ?>
     <main>
-        <form action="" method="post" class="card">
+        <?php include "../views/nav.php"; ?>
+        <div class="card grid columns-7">
+            <span>id</span>
+            <span>name</span>
+            <span>email</span>
+            <span>id-user</span>
+            <span>created-at</span>
+            <span>updated-at</span>
+            <span>actions</span>
+        </div>
+        <form action="" method="post" class="card grid columns-7">
             <input type="number" name="id" id="id" value="<?php echo $data['id'] ?>" readonly>
             <input type="text" name="name" id="name" value="<?php echo $data['name'] ?>" readonly>
             <input type="text" name="email" id="email" value="<?php echo $data['email'] ?>" readonly>

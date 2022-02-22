@@ -15,10 +15,16 @@
     <header>
         <h1>Add Citizen</h1>
     </header>
-    <?php include "../views/nav.php"; ?>
     <main>
+        <?php include "../views/nav.php"; ?>
+        <div class="card grid columns-4">
+            <span>name</span>
+            <span>email</span>
+            <span>id-user</span>
+            <span>actions</span>
+        </div>
         <?php
-        echo '<form action="" method="post">';
+        echo '<form action="" method="post" class="card grid columns-4">';
         echo '<input type="text" name="name" id="name" value="">';
         echo '<input type="text" name="email" id="email" value="">';
         echo '<input type="text" name="idUser" id="idUser" value="">';
