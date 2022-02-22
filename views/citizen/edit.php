@@ -27,12 +27,23 @@
             <span>actions</span>
         </div>
         <form action="" method="post" class="card grid columns-7">
-            <input type="number" name="id" id="id" value="<?php echo $data['id'] ?>" readonly>
-            <input type="text" name="name" id="name" value="<?php echo $data['name'] ?>">
-            <input type="text" name="email" id="email" value="<?php echo $data['email'] ?>">
-            <input type="number" name="idUser" id="idUser" value="<?php echo $data['idUser'] ?>">
-            <input type="datetime" name="createdAt" id="createdAt" value="<?php echo $data['created_at'] ?> " readonly>
-            <input type="datetime" name="updatedAt" id="updatedAt" value="<?php echo $data['updated_at'] ?>" readonly>
+
+            <?php
+            $citizen = $data[0];
+            $users = $data[1];
+            ?>
+            <input type="number" name="id" id="id" value="<?php echo $citizen['id'] ?>" readonly>
+            <input type="text" name="name" id="name" value="<?php echo $citizen['name'] ?>">
+            <input type="text" name="email" id="email" value="<?php echo $citizen['email'] ?>">
+            <select name="idUser" id="idUser" value="<?php echo $citizen['idUser'] ?>">
+                <?php
+                foreach ($users as $user) {
+                    echo '<option value="volvo">' . $user['id'] . '</option>';
+                }
+                ?>
+            </select>
+            <input type=" datetime" name="createdAt" id="createdAt" value="<?php echo $citizen['created_at'] ?> " readonly>
+            <input type="datetime" name="updatedAt" id="updatedAt" value="<?php echo $citizen['updated_at'] ?>" readonly>
             <button type="submit" name="submit" value="update">Update</button>
         </form>
     </main>

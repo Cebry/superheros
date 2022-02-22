@@ -27,8 +27,14 @@
         <form action="" method="post" class="card grid columns-4">
             <input type="text" name="name" id="name" value="">
             <input type="text" name="email" id="email" value="">
-            <input type="text" name="idUser" id="idUser" value="">
-            <button type="submit" name="submit" value="insert">Insert</button>
+            <select name="idUser" id="idUser">
+                <?php
+                $users = $data;
+                foreach ($users as $user) {
+                    echo '<option value="volvo">' . $user['id'] . '</option>';
+                }
+                ?>
+            </select> <button type="submit" name="submit" value="insert">Insert</button>
         </form>';
 
     </main>

@@ -3,30 +3,35 @@
 namespace App\Controller;
 
 use App\Models\CitizenModel;
+use App\Models\UserModel;
 
 class CitizenController extends BaseController
 {
     function listAction()
     {
-        $us = new CitizenModel();
-        $data = $us->readLastPage();
+        $cm = new CitizenModel();
+        $data = $cm->readLastPage();
         $this->renderHTML('../views/citizen/list.php', $data);
     }
 
     function editAction($request)
     {
-        $us = new CitizenModel();
+        $cm = new CitizenModel();
+        $um = new UserModel();
         if (!isset($_POST['submit'])) {
             $id =  basename($request, "/citizen/edit/");
-            $data = $us->read($id);
-            $this->renderHTML('../views/citizen/edit.php', $data[0]);
+            $data = array();
+            array_push($data, $cm->read($id)[0]);
+            // $data[1] es el array de ids de usuarios
+            array_push($data, $um->readAll());
+            $this->renderHTML('../views/citizen/edit.php', $data);
         } else {
             if ($_POST['submit'] == 'update') {
-                $us->setId($_POST['id']);
-                $us->setName($_POST['name']);
-                $us->setEmail($_POST['email']);
-                $us->setIdUser($_POST['idUser']);
-                $us->update();
+                $cm->setId($_POST['id']);
+                $cm->setName($_POST['name']);
+                $cm->setEmail($_POST['email']);
+                $cm->setIdUser($_POST['idUser']);
+                $cm->update();
             }
             header('location: /citizen/list');
         }
@@ -34,15 +39,17 @@ class CitizenController extends BaseController
 
     function insertAction()
     {
-        $us = new CitizenModel();
+        $cm = new CitizenModel();
         if (!isset($_POST['submit'])) {
-            $this->renderHTML('../views/citizen/insert.php');
+            $um = new UserModel();
+            $data = $um->readAll();
+            $this->renderHTML('../views/citizen/insert.php', $data);
         } else {
             if ($_POST['submit'] == 'insert') {
-                $us->setName($_POST['name']);
-                $us->setEmail($_POST['email']);
-                $us->setIdUser($_POST['idUser']);
-                $us->insert();
+                $cm->setName($_POST['name']);
+                $cm->setEmail($_POST['email']);
+                $cm->setIdUser($_POST['idUser']);
+                $cm->insert();
             }
             header('location: /citizen/list');
         }
@@ -50,15 +57,15 @@ class CitizenController extends BaseController
 
     function deleteAction($request)
     {
-        $us = new CitizenModel();
+        $cm = new CitizenModel();
         if (!isset($_POST['submit'])) {
             $id =  basename($request, "/citizen/del/");
-            $data = $us->read($id);
+            $data = $cm->read($id);
             $this->renderHTML('../views/citizen/delete.php', $data[0]);
         } else {
             if ($_POST['submit'] == 'delete') {
-                $us->setId($_POST['id']);
-                $us->delete();
+                $cm->setId($_POST['id']);
+                $cm->delete();
             }
             header('location: /citizen/list');
         }

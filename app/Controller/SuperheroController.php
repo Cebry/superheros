@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use App\Models\AbilityModel;
 use App\Models\SuperheroModel;
+use App\Models\UserModel;
+// TODO: use App\Models\EvolutionModel;
 
 class SuperheroController extends BaseController
 {
@@ -17,10 +18,20 @@ class SuperheroController extends BaseController
     function editAction($request)
     {
         $sh = new SuperheroModel();
+
+
         if (!isset($_POST['submit'])) {
             $id =  basename($request, "/sh/edit/");
-            $data = $sh->read($id);
-            $this->renderHTML('../views/superhero/edit.php', $data[0]);
+            $data = array();
+            // data[0] es el superheroe
+            array_push($data, $sh->read($id)[0]);
+            // $data[1] es el array de ids de usuarios
+            $um = new UserModel();
+            array_push($data, $um->readAll());
+            // TODO: $data[2] será el array de evoluciones
+            // $em = new EvolutionModel();
+            // array_push($data, $em->readAll());
+            $this->renderHTML('../views/superhero/edit.php', $data);
         } else {
             if ($_POST['submit'] == 'update') {
                 $sh->setId($_POST['id']);
@@ -38,11 +49,9 @@ class SuperheroController extends BaseController
     {
         $sh = new SuperheroModel();
 
-        $am = new AbilityModel;
-        $data = $am->readAll();
-
         if (!isset($_POST['submit'])) {
-
+            $um = new UserModel();
+            $data = $um->readAll();
             $this->renderHTML('../views/superhero/insert.php', $data);
         } else {
             if ($_POST['submit'] == 'insert') {

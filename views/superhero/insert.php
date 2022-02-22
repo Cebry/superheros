@@ -28,7 +28,14 @@
             <input type="text" name="name" id="name" value="">
             <input type="text" name="image" id="image" value="">
             <input type="text" name="evolution" id="evolution" value="">
-            <input type="number" name="id_user" id="id_user" value="">
+            <select name="idUser" id="idUser">
+                <?php
+                $users = $data;
+                foreach ($users as $user) {
+                    echo '<option value="volvo">' . $user['id'] . '</option>';
+                }
+                ?>
+            </select>
             <button type="submit" name="submit" value="insert">Insert</button>
         </form>
     </main>
