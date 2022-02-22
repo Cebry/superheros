@@ -19,16 +19,28 @@
     <main>
         <section>
             <?php echo '<a href="/user/add' . '" class="add">NEW</a>'; ?>
+            <div class="card grid columns-6">
+                <span>id</span>
+                <span>user</span>
+                <span>password</span>
+                <span>created-at</span>
+                <span>updated-at</span>
+                <span>actions</span>
+            </div>
             <?php
             foreach ($data as $user) {
-                echo '<form action="" method="post" class="card">';
+                echo '<form action="" method="post" class="card grid columns-6">';
                 echo '<input type="number" name="id" id="id" value="' . $user['id'] . '" readonly>';
                 echo '<input type="text" name="user" id="user" value="' . $user['user'] . '" readonly>';
                 echo '<input type="text" name="psw" id="psw" value="' . $user['psw'] . '" readonly>';
                 echo '<input type="datetime" name="createdAt" id="createdAt" value="' . $user['created_at'] . '" readonly>';
                 echo '<input type="datetime" name="updatedAt" id="updatedAt" value="' . $user['updated_at'] . '" readonly>';
+
+                echo '<div>';
                 echo '<a href="/user/edit/' . $user['id'] . '" class="update">EDIT</a>';
                 echo '<a href="/user/del/' . $user['id'] . '" class="delete">DELETE</a>';
+                echo '</div>';
+
                 echo '</form>';
             }
             ?>

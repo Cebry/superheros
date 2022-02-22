@@ -17,8 +17,12 @@
     </header>
     <?php include "../views/nav.php"; ?>
     <main>
-
-        <form action="" method="post">
+        <div class="card grid columns-3">
+            <span>user</span>
+            <span>password</span>
+            <span>actions</span>
+        </div>
+        <form action="" method="post" class="card grid columns-3">
             <input type="text" name="user" id="user" value="">
             <input type="text" name="psw" id="psw" value="">
             <button type="submit" name="submit" value="insert">Insert</button>
