@@ -37,8 +37,8 @@
                 echo '<input type="text" name="title" id="title" value="' . $request['title'] . '" readonly>';
                 echo '<input type="text" name="description" id="description" value="' . $request['description'] . '" readonly>';
                 echo '<input type="text" name="done" id="done" value="' . $request['done'] . '" readonly>';
-                echo '<input type="text" name="idSuperhero" id="idSuperhero" value="' . $request['idSuperhero'] . '" readonly>';
-                echo '<input type="text" name="idCitizen" id="idCitizen" value="' . $request['idCitizen'] . '" readonly>';
+                echo '<input type="text" name="id_superhero" id="id_superhero" value="' . $request['id_superhero'] . '" readonly>';
+                echo '<input type="text" name="id_citizen" id="id_citizen" value="' . $request['id_citizen'] . '" readonly>';
                 echo '<input type="datetime" name="createdAt" id="createdAt" value="' . $request['created_at'] . '" readonly>';
                 echo '<input type="datetime" name="updatedAt" id="updatedAt" value="' . $request['updated_at'] . '" readonly>';
                 echo '<div>';

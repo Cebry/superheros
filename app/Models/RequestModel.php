@@ -16,11 +16,11 @@ class RequestModel extends DBAbstractModel
         return self::$instance;
     }
 
-    private static $createQuery = "INSERT INTO request(title, description, done, idSuperhero, idCitizen) VALUES(:title, :description, :done, :idSuperhero, :idCitizen)";
+    private static $createQuery = "INSERT INTO request(title, description, done, id_superhero, id_citizen) VALUES(:title, :description, :done, :id_superhero, :id_citizen)";
     private static $readByIdQuery = "SELECT * FROM request WHERE id = :id";
     private static $readByNameQuery = "SELECT * FROM request WHERE nombre LIKE CONCAT('%', :name, '%')";
     private static $readAllQuery = "SELECT * FROM request";
-    private static $updateQuery = "UPDATE request SET title=:title, description=:description, done=:done, idSuperhero=:idSuperhero, idCitizen=:idCitizen WHERE id = :id";
+    private static $updateQuery = "UPDATE request SET title=:title, description=:description, done=:done, id_superhero=:id_superhero, id_citizen=:id_citizen WHERE id = :id";
     private static $deleteQuery = "DELETE FROM request WHERE id = :id";
     private static $readLastPageQuery = "SELECT * FROM request ORDER BY id DESC LIMIT " . REQUESTSPERPAGE;
 
@@ -108,8 +108,8 @@ class RequestModel extends DBAbstractModel
         $this->parameters['title'] = $this->getTitle();
         $this->parameters['description'] = $this->getDescrition();
         $this->parameters['done'] = $this->getDone();
-        $this->parameters['idSuperhero'] = $this->getIdSuperhero();
-        $this->parameters['idCitizen'] = $this->getIdCitizen();
+        $this->parameters['id_superhero'] = $this->getIdSuperhero();
+        $this->parameters['id_citizen'] = $this->getIdCitizen();
         $this->get_results_from_query();
         $this->message = 'Request agregado correctamente';
     }
@@ -161,8 +161,8 @@ class RequestModel extends DBAbstractModel
         $this->parameters['title'] = $this->getTitle();
         $this->parameters['description'] = $this->getDescrition();
         $this->parameters['done'] = $this->getDone();
-        $this->parameters['idSuperhero'] = $this->getIdSuperhero();
-        $this->parameters['idCitizen'] = $this->getIdCitizen();
+        $this->parameters['id_superhero'] = $this->getIdSuperhero();
+        $this->parameters['id_citizen'] = $this->getIdCitizen();
 
         $this->get_results_from_query();
         $this->message = 'Request modificado';

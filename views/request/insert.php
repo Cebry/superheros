@@ -25,12 +25,27 @@
             <span>id-citizen</span>
             <span>actions</span>
         </div>
-        <form action="" method="post" class="card grid columns-6">'
+        <form action="" method="post" class="card grid columns-6">
             <input type="text" name="title" id="title" value="">
             <input type="text" name="description" id="description" value="">
             <input type="text" name="done" id="done" value="">
-            <input type="number" name="idSuperhero" id="idSuperhero" value="">
-            <input type="number" name="idCitizen" id="idCitizen" value="">
+            <select name="id_superhero" id="id_superhero">
+                <?php
+                $superheros = $data[0];
+                foreach ($superheros as $superhero) {
+                    echo '<option value="' . $superhero['id'] . '">' . $superhero['id'] . '</option>';
+                }
+                ?>
+            </select>
+            <select name="id_citizen" id="id_citizen">
+                <?php
+                $citizens = $data[1];
+                foreach ($citizens as $citizen) {
+                    echo '<option value="' . $citizen['id'] . '">' . $citizen['id'] . '</option>';
+                }
+                ?>
+            </select>
+
             <button type="submit" name="submit" value="insert">Insert</button>
         </form>
 

@@ -29,14 +29,30 @@
             <span>actions</span>
         </div>
         <form action="" method="post" class="card grid columns-9">
-            <input type="number" name="id" id="id" value="<?php echo $data['id'] ?>" readonly>
-            <input type="text" name="title" id="title" value="<?php echo $data['title'] ?>">
-            <input type="text" name="description" id="description" value="<?php echo $data['description'] ?>">
-            <input type="text" name="done" id="done" value="<?php echo $data['done'] ?>">
-            <input type="number" name="idSuperhero" id="idSuperhero" value="<?php echo $data['idSuperhero'] ?>">
-            <input type="number" name="idCitizen" id="idCitizen" value="<?php echo $data['idCitizen'] ?>">
-            <input type="datetime" name="createdAt" id="createdAt" value="<?php echo $data['created_at'] ?>" readonly>
-            <input type="datetime" name="updatedAt" id="updatedAt" value="<?php echo $data['updated_at'] ?>" readonly>
+            <?php $request = $data[0] ?>
+            <input type="number" name="id" id="id" value="<?php echo $request['id'] ?>" readonly>
+            <input type="text" name="title" id="title" value="<?php echo $request['title'] ?>">
+            <input type="text" name="description" id="description" value="<?php echo $request['description'] ?>">
+            <input type="text" name="done" id="done" value="<?php echo $request['done'] ?>">
+            <select name="id_superhero" id="id_superhero" value="<?php echo $request['id_superhero'] ?>">
+                <?php
+
+                $superheroes = $data[1];
+                foreach ($superheroes as $superhero) {
+                    echo '<option value="' . $superhero['id'] . '">' . $superhero['id'] . '</option>';
+                }
+                ?>
+            </select>
+            <select name="id_citizen" id="id_citizen" value="<?php echo $request['id_citizen'] ?>">
+                <?php
+                $citizens = $data[2];
+                foreach ($citizens as $citizen) {
+                    echo '<option value="' . $citizen['id'] . '">' . $citizen['id'] . '</option>';
+                }
+                ?>
+            </select>
+            <input type="datetime" name="createdAt" id="createdAt" value="<?php echo $request['created_at'] ?>" readonly>
+            <input type="datetime" name="updatedAt" id="updatedAt" value="<?php echo $request['updated_at'] ?>" readonly>
             <button type="submit" name="submit" value="update">Update</button>
         </form>
     </main>

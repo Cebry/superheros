@@ -41,7 +41,7 @@ class SuperheroController extends BaseController
                 $sh->setIdUser($_POST['id_user']);
                 $sh->update();
             }
-            header('location: /sh/list');
+            // header('location: /sh/list');
         }
     }
 

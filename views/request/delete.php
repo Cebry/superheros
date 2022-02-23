@@ -33,8 +33,8 @@
             <input type="text" name="title" id="title" value="<?php echo $data['title'] ?>" readonly>
             <input type="text" name="description" id="description" value="<?php echo $data['description'] ?>" readonly>
             <input type="text" name="done" id="done" value="<?php echo $data['done'] ?>" readonly>
-            <input type="number" name="idSuperhero" id="idSuperhero" value="<?php echo $data['idSuperhero'] ?>" readonly>
-            <input type="number" name="idCitizen" id="idCitizen" value="<?php echo $data['idCitizen'] ?>" readonly>
+            <input type="number" name="id_superhero" id="id_superhero" value="<?php echo $data['id_superhero'] ?>" readonly>
+            <input type="number" name="id_citizen" id="idCitizen" value="<?php echo $data['id_citizen'] ?>" readonly>
             <input type="datetime" name="createdAt" id="createdAt" value="<?php echo $data['created_at'] ?>" readonly>
             <input type="datetime" name="updatedAt" id="updatedAt" value="<?php echo $data['updated_at'] ?>" readonly>
             <button type=" submit" name="submit" value="delete">Delete</button>
