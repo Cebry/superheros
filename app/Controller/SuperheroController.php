@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Models\SuperheroModel;
 use App\Models\UserModel;
-// TODO: use App\Models\EvolutionModel;
+use App\Models\EvolutionModel;
 
 class SuperheroController extends BaseController
 {
@@ -28,9 +28,9 @@ class SuperheroController extends BaseController
             // $data[1] es el array de ids de usuarios
             $um = new UserModel();
             array_push($data, $um->readAll());
-            // TODO: $data[2] será el array de evoluciones
-            // $em = new EvolutionModel();
-            // array_push($data, $em->readAll());
+            // $data[2] será el array de evoluciones
+            $em = new EvolutionModel();
+            array_push($data, $em->readAll());
             $this->renderHTML('../views/superhero/edit.php', $data);
         } else {
             if ($_POST['submit'] == 'update') {
@@ -51,7 +51,13 @@ class SuperheroController extends BaseController
 
         if (!isset($_POST['submit'])) {
             $um = new UserModel();
-            $data = $um->readAll();
+            $data = array();
+            // $data[0] es el array de ids de usuarios
+            $um = new UserModel();
+            array_push($data, $um->readAll());
+            // $data[1] será el array de evoluciones
+            $em = new EvolutionModel();
+            array_push($data, $em->readAll());
             $this->renderHTML('../views/superhero/insert.php', $data);
         } else {
             if ($_POST['submit'] == 'insert') {
@@ -61,7 +67,7 @@ class SuperheroController extends BaseController
                 $sh->setIdUser($_POST['id_user']);
                 $sh->insert();
             }
-            header('location: /sh/list');
+            // header('location: /sh/list');
         }
     }
 

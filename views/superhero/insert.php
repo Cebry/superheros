@@ -27,12 +27,19 @@
         <form action="" method="post" class="card grid columns-5">
             <input type="text" name="name" id="name" value="">
             <input type="text" name="image" id="image" value="">
-            <input type="text" name="evolution" id="evolution" value="">
-            <select name="idUser" id="idUser">
+            <select name="evolution" id="evolution">
                 <?php
-                $users = $data;
+                $evolutions = $data[1];
+                foreach ($evolutions as $evolution) {
+                    echo '<option value="' . $evolution['name'] . '">' . $evolution['name'] . '</option>';
+                }
+                ?>
+            </select>
+            <select name="id_user" id="idUser">
+                <?php
+                $users = $data[0];
                 foreach ($users as $user) {
-                    echo '<option value="volvo">' . $user['id'] . '</option>';
+                    echo '<option value="' . $user['id'] . '">' . $user['id'] . '</option>';
                 }
                 ?>
             </select>

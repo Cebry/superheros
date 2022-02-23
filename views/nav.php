@@ -5,5 +5,6 @@
         <li><a href="http://superheroes.local/user/list">users</a></li>
         <li><a href="http://superheroes.local/citizen/list">citizens</a></li>
         <li><a href="http://superheroes.local/request/list">requests</a></li>
+        <li><a href="http://superheroes.local/evolution/list">evolutions</a></li>
     </ul>
 </nav>

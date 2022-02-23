@@ -28,28 +28,24 @@
             <span>actions</span>
         </div>
         <form action="" method="post" class="card grid columns-8">
-            <?php
-            $superhero = $data[0];
-            $users = $data[1];
-            // TODO: evoution
-            // $evolutions = $data[2];
-            ?>
+            <?php $superhero = $data[0]; ?>
             <input type="number" name="id" id="id" value="<?php echo $superhero['id'] ?>" readonly>
             <input type="text" name="name" id="name" value="<?php echo $superhero['name'] ?>">
             <input type="text" name="image" id="image" value="<?php echo $superhero['image'] ?>">
-            <input type="text" name="evolution" id="evolution" value="<?php echo $superhero['evolution'] ?>">
-            <!-- TODO: evoution -->
-            <!--     <select name="evolution" id="evolution" value="<?php echo $citizen['evolution'] ?>">
+            <select name="evolution" id="evolution" value="<?php echo $superhero['evolution'] ?>">
                 <?php
+
+                $evolutions = $data[2];
                 foreach ($evolutions as $evolution) {
-                    echo '<option value="volvo">' . $evolution['name'] . '</option>';
+                    echo '<option value="' . $evolution['name'] . '">' . $evolution['name'] . '</option>';
                 }
                 ?>
-            </select> -->
-            <select name="idUser" id="idUser" value="<?php echo $citizen['idUser'] ?>">
+            </select>
+            <select name="id_user" id="id_user" value="<?php echo $citizen['id_user'] ?>">
                 <?php
+                $users = $data[1];
                 foreach ($users as $user) {
-                    echo '<option value="volvo">' . $user['id'] . '</option>';
+                    echo '<option value="' . $user['id'] . '">' . $user['id'] . '</option>';
                 }
                 ?>
             </select>

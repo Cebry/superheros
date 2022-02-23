@@ -8,6 +8,7 @@ use App\Controller\AbilityController;
 use App\Controller\CitizenController;
 use App\Controller\RequestController;
 use App\Controller\SuperheroController;
+use App\Controller\EvolutionController;
 use App\Core\Router;
 
 ini_set('display_errors', 1);
@@ -135,6 +136,30 @@ $router->add(array(
     'name' => 'deleteRequest',
     'path' => '/^\/request\/del\/[0-9]{1,3}$/',
     'action' => [RequestController::class, 'deleteAction']
+));
+
+$router->add(array(
+    'name' => 'listEvolution',
+    'path' => '/^\/evolution\/list$/',
+    'action' => [EvolutionController::class, 'listAction']
+));
+
+$router->add(array(
+    'name' => 'addEvolution',
+    'path' => '/^\/evolution\/add$/',
+    'action' => [EvolutionController::class, 'insertAction']
+));
+
+$router->add(array(
+    'name' => 'editRequest',
+    'path' => '/^\/evolution\/edit\/[0-9a-zA-Z]{1,}$/',
+    'action' => [EvolutionController::class, 'editAction']
+));
+
+$router->add(array(
+    'name' => 'deleteEvolution',
+    'path' => '/^\/evolution\/del\/[0-9a-zA-Z]{1,}$/',
+    'action' => [EvolutionController::class, 'deleteAction']
 ));
 // $router->add(array(
 //     'name' => 'searchSuperhero',
