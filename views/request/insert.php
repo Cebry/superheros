@@ -17,35 +17,17 @@
     </header>
     <?php include "../views/nav.php"; ?>
     <main>
-        <div class="card grid columns-6">
+        <div class="card grid columns-3">
             <span>title</span>
             <span>description</span>
-            <span>done</span>
-            <span>id-superhero</span>
-            <span>id-citizen</span>
             <span>actions</span>
         </div>
-        <form action="" method="post" class="card grid columns-6">
+        <form action="" method="post" class="card grid columns-3">
             <input type="text" name="title" id="title" value="">
             <input type="text" name="description" id="description" value="">
-            <input type="text" name="done" id="done" value="">
-            <select name="id_superhero" id="id_superhero">
-                <?php
-                $superheros = $data[0];
-                foreach ($superheros as $superhero) {
-                    echo '<option value="' . $superhero['id'] . '">' . $superhero['id'] . '</option>';
-                }
-                ?>
-            </select>
-            <select name="id_citizen" id="id_citizen">
-                <?php
-                $citizens = $data[1];
-                foreach ($citizens as $citizen) {
-                    echo '<option value="' . $citizen['id'] . '">' . $citizen['id'] . '</option>';
-                }
-                ?>
-            </select>
-
+            <input type="text" name="done" id="done" value="0" hidden>
+            <input type="text" name="superhero_id" id="done" value="<?php echo $_POST['superhero_id'] ?>" hidden>
+            <input type="text" name="citizen_id" id="done" value="<?php echo $_POST['citizen_id'] ?>" hidden>
             <button type="submit" name="submit" value="insert">Insert</button>
         </form>
 

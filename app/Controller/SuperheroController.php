@@ -6,6 +6,8 @@ use App\Models\SuperheroModel;
 use App\Models\UserModel;
 use App\Models\EvolutionModel;
 use App\Controller\ErrorController;
+use App\Models\AbilityModel;
+use App\Models\SuperheroAbilityModel;
 
 class SuperheroController extends BaseController
 {
@@ -13,6 +15,13 @@ class SuperheroController extends BaseController
     {
         $sh = new SuperheroModel();
         $data = $sh->readLastPage();
+        $sam = new SuperheroAbilityModel();
+        foreach ($data as $sh) {
+            $sh['abilities'] = $sam->readBySuperheroId($sh['id']);
+            // var_dump($sam->readBySuperheroId($sh['id']));
+            var_dump($sh);
+        }
+        var_dump($sh);
         if ($_SESSION['user']['profile'] == 'expert') {
             $this->renderHTML('../views/superhero/crud.php', $data);
         } else {
@@ -90,16 +99,18 @@ class SuperheroController extends BaseController
     function registerAction()
     {
         $sh = new SuperheroModel();
-        if (!isset($_POST['submit'])) {
+        $am = new AbilityModel();
+        $data = $am->readAll();
 
-            $this->renderHTML('../views/superhero/register.php');
+        if (!isset($_POST['submit'])) {
+            $am = new AbilityModel();
+            $this->renderHTML('../views/superhero/register.php', $data);
         } else {
             if ($_POST['submit'] == 'register') {
                 $um = new UserModel();
                 $um->setUser($_POST['user']);
                 $um->setPsw($_POST['psw']);
                 $um->insert();
-
                 $sh->setName($_POST['name']);
                 $sh->setImage($_POST['image']);
                 $sh->setEvolution('beginner');

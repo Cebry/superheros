@@ -22,6 +22,7 @@ class SuperheroAbilityModel extends DBAbstractModel
     private static $updateQuery = "UPDATE superhero_ability SET id_superhero=:id_superhero, id_ability=:id_ability, value=:value WHERE id = :id";
     private static $deleteQuery = "DELETE FROM superhero_ability WHERE id = :id";
     private static $readLastPageQuery = "SELECT * FROM superhero_ability ORDER BY id DESC LIMIT " . ABILITIESPERPAGE;
+    private static $readBySuperheroIdQuery = "SELECT * FROM superhero_ability WHERE id_superhero=:id_superhero";
 
     var $id;
     var $idSuperhero;
@@ -105,6 +106,15 @@ class SuperheroAbilityModel extends DBAbstractModel
         } else {
             $this->message = 'Ability no encontrado.';
         }
+        return $this->rows;
+    }
+
+    public function readBySuperheroId($id = '')
+    {
+        $this->query = self::$readBySuperheroIdQuery;
+        $this->parameters['id_superhero'] = $id;
+        $this->get_results_from_query();
+
         return $this->rows;
     }
 

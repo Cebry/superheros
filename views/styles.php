@@ -1,2 +1,2 @@
-<link rel="stylesheet" href="http://superheroes.local/css/normalize.css">
-<link rel="stylesheet" href="http://superheroes.local/css/styles.css">
+<link rel="stylesheet" href="<?php echo URLBASE ?>css/normalize.css">
+<link rel="stylesheet" href="<?php echo URLBASE ?>css/styles.css">

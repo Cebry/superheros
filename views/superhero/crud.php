@@ -18,7 +18,6 @@
     <?php include "../views/nav.php"; ?>
     <main>
         <section>
-            <?php echo '<a href="/sh/add" class="add">NEW</a>'; ?>
             <div class="card grid columns-8">
                 <span>id</span>
                 <span>name</span>
@@ -31,22 +30,22 @@
             </div>
             <?php
             foreach ($data as $superhero) {
-                echo '<form action="" method="post" class="card grid columns-8">';
-                echo '<input type="number" name="id" id="id" value="' . $superhero['id'] . '" readonly>';
-                echo '<input type="text" name="name" id="name" value="' . $superhero['name'] . '" readonly>';
-                echo '<input type="text" name="image" id="image" value="' . $superhero['image'] . '" readonly>';
-                echo '<input type="text" name="evolution" id="evolution" value="' . $superhero['evolution'] . '" readonly>';
-                echo '<input type="text" name="id_user" id="id_user" value="' . $superhero['id_user'] . '" readonly>';
-                echo '<input type="datetime" name="createdAt" id="createdAt" value="' . $superhero['created_at'] . '" readonly>';
-                echo '<input type="datetime" name="updatedAt" id="updatedAt" value="' . $superhero['updated_at'] . '" readonly>';
+                echo '<div action="" method="post" class="card grid columns-8">';
+                echo '<div>' . $superhero['id'] . '</div>';
+                echo '<div>' . $superhero['name'] . '</div>';
+                echo '<div>' . $superhero['image'] . '</div>';
+                echo '<div>' . $superhero['evolution'] . '</div>';
+                echo '<div>' . $superhero['id_user'] . '</div>';
+                echo '<div>' . $superhero['created_at'] . '</div>';
+                echo '<div>' . $superhero['updated_at'] . '</div>';
                 echo '<div>';
                 echo '<a href="/sh/update/' . $superhero['id'] . '">EDIT</a>';
                 echo '<a href="/sh/delete/' . $superhero['id'] . '">DELETE</a>';
                 echo '</div>';
-                echo '</form>';
+                echo '</div>';
             }
+            // TODO: actualizar para que se muestren habilidades
             ?>
-            <!-- TODO abilities -->
         </section>
 
     </main>

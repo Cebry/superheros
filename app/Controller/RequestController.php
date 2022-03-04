@@ -57,23 +57,19 @@ class RequestController extends BaseController
         $rm = new RequestModel();
         if (!isset($_POST['submit'])) {
             $data = array();
-            // $data[0] es el array de superheroes
             $shm = new SuperheroModel();
-            array_push($data, $shm->readAll());
-            // $data[1] será el array de citizens
-            $cm = new CitizenModel();
-            array_push($data, $cm->readAll());
+            $data = $shm->readAll();
             $this->renderHTML('../views/request/insert.php', $data);
         } else {
             if ($_POST['submit'] == 'insert') {
                 $rm->setTitle($_POST['title']);
                 $rm->setDescription($_POST['description']);
                 $rm->setDone($_POST['done']);
-                $rm->setIdSuperhero($_POST['id_superhero']);
-                $rm->setIdCitizen($_POST['id_citizen']);
+                $rm->setIdSuperhero($_POST['superhero_id']);
+                $rm->setIdCitizen($_POST['citizen_id']);
                 $rm->insert();
             }
-            header('location: /request/list');
+            header('location: /');
         }
     }
 

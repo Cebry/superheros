@@ -17,25 +17,47 @@
     </header>
     <?php include "../views/nav.php"; ?>
     <main>
-        <section>
-            <div class="card grid columns-3">
-                <span>name</span>
-                <span>image</span>
-                <span>evolution</span>
-            </div>
-            <div class='card grid columns-3'>
-                <?php
-                foreach ($data as $superhero) {
-                    echo '<div>' . $superhero['name'] . '</div>';
-                    echo '<div>' . $superhero['image'] . '</div>';
-                    echo '<div>' . $superhero['evolution'] . '</div>';
-                }
-                ?>
-            </div>
-        </section>
+        <div class="card grid columns-3">
+            <span>name</span>
+            <span>image</span>
+            <span>evolution</span>
+        </div>
+        <?php
+        var_dump($data);
+        foreach ($data as $superhero) {
+            echo '<div class="card">';
+
+            echo '<div class="card grid columns-3">';
+            echo '<div>' . $superhero['name'] . '</div>';
+            echo '<div>' . $superhero['image'] . '</div>';
+            echo '<div>' . $superhero['evolution'] . '</div>';
+
+            echo '</div>';
+
+
+            foreach ($superhero['abilities'] as $ability) {
+
+                echo '<div class="card grid columns-2">';
+                echo '<div>' . $ability['id_ability'] . '</div>';
+                echo '<div>' . $ability['value'] . '</div>';
+                echo '</div>';
+            }
+
+            if (array_search($_SESSION['user']['profile'], ['citizen']) > -1) {
+                echo '<form action="/request/new" method="post">
+                <input type="text" name="superhero_id" value="' . $superhero['id'] . '" hidden>
+                <input type="text" name="citizen_id" value="' . $_SESSION['citizen']['id'] . '" hidden>
+                <button type="submit">Request</button>
+                </form>';
+            }
+
+            echo '</div>';
+        }
+        ?>
 
     </main>
 
 </body>
+
 
 </html>
