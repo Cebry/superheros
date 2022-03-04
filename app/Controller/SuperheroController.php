@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Models\SuperheroModel;
 use App\Models\UserModel;
 use App\Models\EvolutionModel;
+use App\Controller\ErrorController;
 
 class SuperheroController extends BaseController
 {
@@ -12,13 +13,28 @@ class SuperheroController extends BaseController
     {
         $sh = new SuperheroModel();
         $data = $sh->readLastPage();
-        $this->renderHTML('../views/superhero/list.php', $data);
+        if ($_SESSION['user']['profile'] == 'expert') {
+            $this->renderHTML('../views/superhero/crud.php', $data);
+        } else {
+            $this->renderHTML('../views/superhero/list.php', $data);
+        }
     }
 
+    function searchAction()
+    {
+        $sh = new SuperheroModel();
+        $data = $sh->readByName($_GET['name']);
+        if ($data[0] != null) {
+            if ($_SESSION['user']['profile'] == 'expert') {
+                $this->renderHTML('../views/superhero/crud.php', $data);
+            } else {
+                $this->renderHTML('../views/superhero/list.php', $data);
+            }
+        } else (new ErrorController)->Error404SuperheroAction();
+    }
     function editAction($request)
     {
         $sh = new SuperheroModel();
-
 
         if (!isset($_POST['submit'])) {
             $id =  basename($request, "/sh/edit/");
@@ -41,7 +57,7 @@ class SuperheroController extends BaseController
                 $sh->setIdUser($_POST['id_user']);
                 $sh->update();
             }
-            // header('location: /sh/list');
+            header('location: /');
         }
     }
 
@@ -67,7 +83,30 @@ class SuperheroController extends BaseController
                 $sh->setIdUser($_POST['id_user']);
                 $sh->insert();
             }
-            // header('location: /sh/list');
+            header('location: /');
+        }
+    }
+
+    function registerAction()
+    {
+        $sh = new SuperheroModel();
+        if (!isset($_POST['submit'])) {
+
+            $this->renderHTML('../views/superhero/register.php');
+        } else {
+            if ($_POST['submit'] == 'register') {
+                $um = new UserModel();
+                $um->setUser($_POST['user']);
+                $um->setPsw($_POST['psw']);
+                $um->insert();
+
+                $sh->setName($_POST['name']);
+                $sh->setImage($_POST['image']);
+                $sh->setEvolution('beginner');
+                $sh->setIdUser($um->lastInsert());
+                $sh->insert();
+            }
+            header('location: /');
         }
     }
 
@@ -83,7 +122,7 @@ class SuperheroController extends BaseController
                 $sh->setId($_POST['id']);
                 $sh->delete();
             }
-            header('location: /sh/list');
+            header('location: /');
         }
     }
 }

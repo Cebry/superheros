@@ -76,7 +76,8 @@ abstract class DBAbstractModel
                 printf("Error en consulta: %s\n", $e->getMessage());
             }
         }
-        $this->close_connection();
+        // $this->close_connection();
+
     }
 
     abstract protected function read();

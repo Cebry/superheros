@@ -11,3 +11,5 @@ define('USERSPERPAGE', 5);
 define('REQUESTSPERPAGE', 5);
 define('ABILITIESPERPAGE', 5);
 define('CITIZENSPERPAGE', 5);
+
+define('URLBASE', 'http://superheroes.local/');

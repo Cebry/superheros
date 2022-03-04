@@ -23,6 +23,8 @@ class RequestModel extends DBAbstractModel
     private static $updateQuery = "UPDATE request SET title=:title, description=:description, done=:done, id_superhero=:id_superhero, id_citizen=:id_citizen WHERE id = :id";
     private static $deleteQuery = "DELETE FROM request WHERE id = :id";
     private static $readLastPageQuery = "SELECT * FROM request ORDER BY id DESC LIMIT " . REQUESTSPERPAGE;
+    private static $readFromSuperheroIdQuery = "SELECT * FROM request WHERE id_superhero = :id_superhero ORDER BY id DESC LIMIT " . REQUESTSPERPAGE;
+    private static $checkDoneQuery = "UPDATE request set done=1 WHERE id = :id;";
 
     private $id;
     private $title;
@@ -181,6 +183,22 @@ class RequestModel extends DBAbstractModel
     {
         $this->query = self::$readLastPageQuery;
         //$this->parameters['Requestpage'] = RequestPORPAGINA;
+        $this->get_results_from_query();
+        return $this->rows;
+    }
+
+    public function readFromSuperheroId()
+    {
+        $this->query = self::$readFromSuperheroIdQuery;
+        $this->parameters['id_superhero'] = $this->getIdSuperhero();
+        $this->get_results_from_query();
+        return $this->rows;
+    }
+
+    public function checkDone()
+    {
+        $this->query = self::$checkDoneQuery;
+        $this->parameters['id'] = $this->getId();
         $this->get_results_from_query();
         return $this->rows;
     }

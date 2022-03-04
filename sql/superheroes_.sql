@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 03, 2022 at 06:05 PM
+-- Generation Time: Mar 04, 2022 at 01:35 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `superheroes+`
 --
-CREATE DATABASE IF NOT EXISTS `superheroes+` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `superheroes+`;
 
 -- --------------------------------------------------------
 
@@ -30,7 +28,6 @@ USE `superheroes+`;
 -- Table structure for table `ability`
 --
 
-DROP TABLE IF EXISTS `ability`;
 CREATE TABLE `ability` (
   `id` int NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -53,7 +50,6 @@ INSERT INTO `ability` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 -- Triggers `ability`
 --
-DROP TRIGGER IF EXISTS `ability_update_updated_at`;
 DELIMITER $$
 CREATE TRIGGER `ability_update_updated_at` BEFORE UPDATE ON `ability` FOR EACH ROW SET NEW.updated_at=CURRENT_TIMESTAMP
 $$
@@ -65,7 +61,6 @@ DELIMITER ;
 -- Table structure for table `citizen`
 --
 
-DROP TABLE IF EXISTS `citizen`;
 CREATE TABLE `citizen` (
   `id` int NOT NULL,
   `name` varchar(20) NOT NULL,
@@ -81,12 +76,12 @@ CREATE TABLE `citizen` (
 
 INSERT INTO `citizen` (`id`, `name`, `email`, `idUser`, `created_at`, `updated_at`) VALUES
 (1, 'johndoe', 'johndoe@superheroes.org', 2, '2022-02-14 08:36:44', '2022-02-14 08:36:44'),
-(3, 'asdfasdf', 'asdf@superheroes.org', 1, '2022-02-14 14:48:00', '2022-02-22 23:09:36');
+(3, 'asdfasdf', 'asdf@superheroes.org', 1, '2022-02-14 14:48:00', '2022-02-22 23:09:36'),
+(4, 'zxcv', 'zxcv', 6, '2022-03-04 01:58:26', '2022-03-04 01:58:26');
 
 --
 -- Triggers `citizen`
 --
-DROP TRIGGER IF EXISTS `citizen_update_updated_at`;
 DELIMITER $$
 CREATE TRIGGER `citizen_update_updated_at` BEFORE UPDATE ON `citizen` FOR EACH ROW SET NEW.updated_at=CURRENT_TIMESTAMP
 $$
@@ -98,7 +93,6 @@ DELIMITER ;
 -- Table structure for table `evolution`
 --
 
-DROP TABLE IF EXISTS `evolution`;
 CREATE TABLE `evolution` (
   `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -117,7 +111,6 @@ INSERT INTO `evolution` (`name`) VALUES
 -- Table structure for table `request`
 --
 
-DROP TABLE IF EXISTS `request`;
 CREATE TABLE `request` (
   `id` int NOT NULL,
   `title` varchar(20) NOT NULL,
@@ -134,12 +127,12 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`id`, `title`, `description`, `done`, `id_superhero`, `id_citizen`, `created_at`, `updated_at`) VALUES
-(1, 'titulo', 'descripcion', 1, 1, 1, '2022-02-15 07:40:02', '2022-02-15 07:55:33');
+(1, 'titulo', 'descripcion', 1, 1, 1, '2022-02-15 07:40:02', '2022-02-15 07:55:33'),
+(11, 'asdf', 'asdfasdfasdf asdf asdf asdf asdf ', 1, 6, 1, '2022-03-04 00:08:41', '2022-03-04 00:09:04');
 
 --
 -- Triggers `request`
 --
-DROP TRIGGER IF EXISTS `request_update_updated_at`;
 DELIMITER $$
 CREATE TRIGGER `request_update_updated_at` BEFORE UPDATE ON `request` FOR EACH ROW SET NEW.updated_at=CURRENT_TIMESTAMP
 $$
@@ -151,7 +144,6 @@ DELIMITER ;
 -- Table structure for table `superhero`
 --
 
-DROP TABLE IF EXISTS `superhero`;
 CREATE TABLE `superhero` (
   `id` int NOT NULL,
   `name` varchar(20) NOT NULL,
@@ -168,12 +160,12 @@ CREATE TABLE `superhero` (
 
 INSERT INTO `superhero` (`id`, `name`, `image`, `evolution`, `id_user`, `created_at`, `updated_at`) VALUES
 (1, 'mastermind', 'a', 'expert', 1, '2022-02-14 08:35:23', '2022-02-14 08:35:23'),
-(6, 'asdfasdf', 'asdfgasdf', 'expert', 1, '2022-02-23 01:09:41', '2022-02-23 01:10:44');
+(6, 'asdfasdf', 'asdfgasdf', 'beginner', 3, '2022-02-23 01:09:41', '2022-03-03 22:05:13'),
+(20, 'qwer', 'qwer', 'beginner', 5, '2022-03-04 01:52:04', '2022-03-04 01:52:04');
 
 --
 -- Triggers `superhero`
 --
-DROP TRIGGER IF EXISTS `superhero_update_updated_at`;
 DELIMITER $$
 CREATE TRIGGER `superhero_update_updated_at` BEFORE UPDATE ON `superhero` FOR EACH ROW SET NEW.updated_at=CURRENT_TIMESTAMP
 $$
@@ -185,7 +177,6 @@ DELIMITER ;
 -- Table structure for table `superhero_ability`
 --
 
-DROP TABLE IF EXISTS `superhero_ability`;
 CREATE TABLE `superhero_ability` (
   `id` int NOT NULL,
   `id_superhero` int NOT NULL,
@@ -198,7 +189,6 @@ CREATE TABLE `superhero_ability` (
 --
 -- Triggers `superhero_ability`
 --
-DROP TRIGGER IF EXISTS `superhero_ability_update_updated_at`;
 DELIMITER $$
 CREATE TRIGGER `superhero_ability_update_updated_at` BEFORE UPDATE ON `superhero_ability` FOR EACH ROW set NEW.updated_at = CURRENT_TIMESTAMP
 $$
@@ -210,7 +200,6 @@ DELIMITER ;
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int NOT NULL,
   `user` varchar(20) NOT NULL,
@@ -225,12 +214,14 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `user`, `psw`, `created_at`, `updated_at`) VALUES
 (1, 'mastermind', 'mastermind', '2022-02-14 08:33:20', '2022-02-14 08:33:20'),
-(2, 'johndoe', 'johndoe', '2022-02-14 08:35:58', '2022-02-14 08:35:58');
+(2, 'johndoe', 'johndoe', '2022-02-14 08:35:58', '2022-02-14 08:35:58'),
+(3, 'asdf', 'asdf', '2022-03-03 22:02:19', '2022-03-03 22:02:19'),
+(5, 'qwer', 'qwer', '2022-03-04 01:52:04', '2022-03-04 01:52:04'),
+(6, 'zxcv', 'zxcv', '2022-03-04 01:58:26', '2022-03-04 01:58:26');
 
 --
 -- Triggers `user`
 --
-DROP TRIGGER IF EXISTS `user_update_updated_at`;
 DELIMITER $$
 CREATE TRIGGER `user_update_updated_at` BEFORE UPDATE ON `user` FOR EACH ROW SET NEW.updated_at=CURRENT_TIMESTAMP
 $$
@@ -278,7 +269,9 @@ ALTER TABLE `superhero`
 -- Indexes for table `superhero_ability`
 --
 ALTER TABLE `superhero_ability`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `superhero_ability_superhero_id` (`id_superhero`),
+  ADD KEY `superhero_ability_ability_id` (`id_abillity`);
 
 --
 -- Indexes for table `user`
@@ -300,19 +293,19 @@ ALTER TABLE `ability`
 -- AUTO_INCREMENT for table `citizen`
 --
 ALTER TABLE `citizen`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `superhero`
 --
 ALTER TABLE `superhero`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `superhero_ability`
@@ -324,7 +317,7 @@ ALTER TABLE `superhero_ability`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -340,14 +333,21 @@ ALTER TABLE `citizen`
 -- Constraints for table `request`
 --
 ALTER TABLE `request`
-  ADD CONSTRAINT `FOREIGN_KEY_REQUEST_CITIZEN_ID` FOREIGN KEY (`id_citizen`) REFERENCES `citizen` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FOREIGN_KEY_REQUEST_SUPERHERO_ID` FOREIGN KEY (`id_superhero`) REFERENCES `superhero` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `FOREIGN_KEY_REQUEST_CITIZEN_ID` FOREIGN KEY (`id_citizen`) REFERENCES `citizen` (`id`),
+  ADD CONSTRAINT `FOREIGN_KEY_REQUEST_SUPERHERO_ID` FOREIGN KEY (`id_superhero`) REFERENCES `superhero` (`id`);
 
 --
 -- Constraints for table `superhero`
 --
 ALTER TABLE `superhero`
-  ADD CONSTRAINT `FOREIGN_KEY_SUPERHERO_USER` FOREIGN KEY (`id_user`) REFERENCES `superhero` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `FOREIGN_KEY_SUPERHERO_USER` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `superhero_ability`
+--
+ALTER TABLE `superhero_ability`
+  ADD CONSTRAINT `superhero_ability_ability_id` FOREIGN KEY (`id_abillity`) REFERENCES `ability` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `superhero_ability_superhero_id` FOREIGN KEY (`id_superhero`) REFERENCES `superhero` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

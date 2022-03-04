@@ -18,7 +18,7 @@ class SuperheroModel extends DBAbstractModel
 
     private static $createQuery = "INSERT INTO superhero(name, image, evolution, id_user) VALUES(:name, :image, :evolution, :id_user)";
     private static $readByIdQuery = "SELECT * FROM superhero WHERE id = :id";
-    private static $readByNameQuery = "SELECT * FROM superhero WHERE nombre LIKE CONCAT('%', :name, '%')";
+    private static $readByNameQuery = "SELECT * FROM superhero WHERE name LIKE CONCAT('%', :name, '%')";
     private static $readAllQuery = "SELECT * FROM superhero";
     private static $updateQuery = "UPDATE superhero SET name=:name, image=:image, evolution=:evolution, id_user=:id_user WHERE id = :id";
     private static $deleteQuery = "DELETE FROM superhero WHERE id = :id";
@@ -171,7 +171,6 @@ class SuperheroModel extends DBAbstractModel
     public function readLastPage()
     {
         $this->query = self::$readLastPageQuery;
-        //$this->parameters['shpage'] = SHPORPAGINA;
         $this->get_results_from_query();
         return $this->rows;
     }

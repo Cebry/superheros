@@ -21,6 +21,7 @@ class UserModel extends DBAbstractModel
     private static $readAllQuery = "SELECT * FROM user";
     private static $updateQuery = "UPDATE user SET user=:user, psw=:psw WHERE id=:id";
     private static $deleteQuery = "DELETE FROM user WHERE id = :id";
+    private static $readByNameQuery = "SELECT * FROM user WHERE user=:user";
     private static $readLastPageQuery = "SELECT * FROM user ORDER BY id DESC LIMIT " . USERSPERPAGE;
 
     private $id;
@@ -127,5 +128,33 @@ class UserModel extends DBAbstractModel
         $this->query = self::$readLastPageQuery;
         $this->get_results_from_query();
         return $this->rows;
+    }
+
+    public function readByName($user = '')
+    {
+        if ($user != '') {
+            $this->query = self::$readByNameQuery;
+            $this->parameters['user'] = $user;
+            $this->get_results_from_query();
+        }
+        if (count($this->rows[0]) == 1) {
+            foreach ($this->rows[0] as $property => $value) {
+                $this->property = $value;
+            }
+            $this->message = 'User encontrado.';
+        } else {
+            $this->message = 'User no encontrado.';
+        }
+        return $this->rows;
+    }
+    //TODO: retorna si loguea o no
+    public function login($user, $password)
+    {
+        if ($this->readByName($user)) {
+            if ($this->rows[0]['psw'] == $password) {
+                return true;
+            }
+        }
+        return false;
     }
 };

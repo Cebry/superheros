@@ -15,6 +15,14 @@ class RequestController extends BaseController
         $this->renderHTML('../views/request/list.php', $data);
     }
 
+    function listFromSuperheroIdAction()
+    {
+        $rm = new RequestModel();
+        $rm->setIdSuperhero($_SESSION['superhero']['id']);
+        $data = $rm->readFromSuperheroId();
+        $this->renderHTML('../views/request/list.php', $data);
+    }
+
     function editAction($request)
     {
         $rm = new RequestModel();
@@ -40,7 +48,7 @@ class RequestController extends BaseController
                 $rm->setIdCitizen($_POST['id_citizen']);
                 $rm->update();
             }
-            // header('location: /request/list');
+            header('location: /request/list');
         }
     }
 
@@ -65,7 +73,7 @@ class RequestController extends BaseController
                 $rm->setIdCitizen($_POST['id_citizen']);
                 $rm->insert();
             }
-            // header('location: /request/list');
+            header('location: /request/list');
         }
     }
 
@@ -80,6 +88,20 @@ class RequestController extends BaseController
             if ($_POST['submit'] == 'delete') {
                 $rm->setId($_POST['id']);
                 $rm->delete();
+            }
+            header('location: /request/list');
+        }
+    }
+
+    function checkDoneAction()
+    {
+        $rm = new RequestModel();
+        $id = $_POST['id'];
+        if (!isset($_POST['submit'])) {
+        } else {
+            if ($_POST['submit'] == 'checkDone') {
+                $rm->setId($id);
+                $rm->checkDone();
             }
             header('location: /request/list');
         }
