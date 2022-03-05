@@ -23,7 +23,6 @@
             <span>evolution</span>
         </div>
         <?php
-        var_dump($data);
         foreach ($data as $superhero) {
             echo '<div class="card">';
 
@@ -35,13 +34,13 @@
             echo '</div>';
 
 
-            foreach ($superhero['abilities'] as $ability) {
+            // foreach ($superhero['abilities'] as $ability) {
 
-                echo '<div class="card grid columns-2">';
-                echo '<div>' . $ability['id_ability'] . '</div>';
-                echo '<div>' . $ability['value'] . '</div>';
-                echo '</div>';
-            }
+            //     echo '<div class="card grid columns-2">';
+            //     echo '<div>' . $ability['id_ability'] . '</div>';
+            //     echo '<div>' . $ability['value'] . '</div>';
+            //     echo '</div>';
+            // }
 
             if (array_search($_SESSION['user']['profile'], ['citizen']) > -1) {
                 echo '<form action="/request/new" method="post">

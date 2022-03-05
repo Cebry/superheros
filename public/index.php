@@ -12,13 +12,11 @@ use App\Controller\EvolutionController;
 use App\Controller\ErrorController;
 use App\Core\Router;
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 session_start();
-
-var_dump($_SESSION);
 
 if (!isset($_SESSION['user'])) {
     $_SESSION['user'] = array('profile' => 'guest');
@@ -102,146 +100,6 @@ $router->add(array(
     'action' => [SuperheroController::class, 'deleteAction'],
     'profiles' => ['expert']
 ));
-
-//TODO: revisar
-// $router->add(array(
-//     'name' => 'addSuperhero',
-//     'path' => '/^\/sh\/add$/',
-//     'action' => [SuperheroController::class, 'insertAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'editSuperhero',
-//     'path' => '/^\/sh\/edit\/\d+$/',
-//     'action' => [SuperheroController::class, 'editAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'deleteSuperhero',
-//     'path' => '/^\/sh\/del\/\d+$/',
-//     'action' => [SuperheroController::class, 'deleteAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'listAbility',
-//     'path' => '/^\/ability\/list$/',
-//     'action' => [AbilityController::class, 'listAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'addAbility',
-//     'path' => '/^\/ability\/add$/',
-//     'action' => [AbilityController::class, 'insertAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'editAbility',
-//     'path' => '/^\/ability\/edit\/\d+$/',
-//     'action' => [AbilityController::class, 'editAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'deleteAbility',
-//     'path' => '/^\/ability\/del\/\d+$/',
-//     'action' => [AbilityController::class, 'deleteAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'listUser',
-//     'path' => '/^\/user\/list$/',
-//     'action' => [UserController::class, 'listAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'addUser',
-//     'path' => '/^\/user\/add$/',
-//     'action' => [UserController::class, 'insertAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'editUser',
-//     'path' => '/^\/user\/edit\/\d+$/',
-//     'action' => [UserController::class, 'editAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'deleteUser',
-//     'path' => '/^\/user\/del\/\d+$/',
-//     'action' => [UserController::class, 'deleteAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'listCitizen',
-//     'path' => '/^\/citizen\/list$/',
-//     'action' => [CitizenController::class, 'listAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'addCitizen',
-//     'path' => '/^\/citizen\/add$/',
-//     'action' => [CitizenController::class, 'insertAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'editCitizen',
-//     'path' => '/^\/citizen\/edit\/\d+$/',
-//     'action' => [CitizenController::class, 'editAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'deleteCitizen',
-//     'path' => '/^\/citizen\/del\/\d+$/',
-//     'action' => [CitizenController::class, 'deleteAction']
-// ));
-
-
-// $router->add(array(
-//     'name' => 'listRequest',
-//     'path' => '/^\/request\/list$/',
-//     'action' => [RequestController::class, 'listAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'addRequest',
-//     'path' => '/^\/request\/add$/',
-//     'action' => [RequestController::class, 'insertAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'editRequest',
-//     'path' => '/^\/request\/edit\/[\d+$/',
-//     'action' => [RequestController::class, 'editAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'deleteRequest',
-//     'path' => '/^\/request\/del\/\d+$/',
-//     'action' => [RequestController::class, 'deleteAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'listEvolution',
-//     'path' => '/^\/evolution\/list$/',
-//     'action' => [EvolutionController::class, 'listAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'addEvolution',
-//     'path' => '/^\/evolution\/add$/',
-//     'action' => [EvolutionController::class, 'insertAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'editRequest',
-//     'path' => '/^\/evolution\/edit\/\d+$/',
-//     'action' => [EvolutionController::class, 'editAction']
-// ));
-
-// $router->add(array(
-//     'name' => 'deleteEvolution',
-//     'path' => '/^\/evolution\/del\/\d+$/',
-//     'action' => [EvolutionController::class, 'deleteAction']
-// ));
 
 $request = $_SERVER['REQUEST_URI'];
 $route = $router->match($request);

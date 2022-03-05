@@ -16,12 +16,12 @@ class SuperheroController extends BaseController
         $sh = new SuperheroModel();
         $data = $sh->readLastPage();
         $sam = new SuperheroAbilityModel();
-        foreach ($data as $sh) {
-            $sh['abilities'] = $sam->readBySuperheroId($sh['id']);
-            // var_dump($sam->readBySuperheroId($sh['id']));
-            var_dump($sh);
-        }
-        var_dump($sh);
+        // foreach ($data as $sh) {
+        //     $sh['abilities'] = $sam->readBySuperheroId($sh['id']);
+        //     // var_dump($sam->readBySuperheroId($sh['id']));
+        //     var_dump($sh);
+        // }
+        // var_dump($sh);
         if ($_SESSION['user']['profile'] == 'expert') {
             $this->renderHTML('../views/superhero/crud.php', $data);
         } else {

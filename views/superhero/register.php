@@ -31,10 +31,10 @@
             <input type="text" name="name" id="name" value="">
             <input type="text" name="image" id="image" value="">
             <?php
-            foreach ($data as $ability) {
-                echo '<label for="' . $ability . '">' . $ability . '</label>';
-                echo '<input type="number" id="' . $ability . '" min="0" name="' . $ability . '" min="0" max="100" placeholder="50">';
-            }
+            // foreach ($data as $ability) {
+            //     echo '<label for="' . $ability . '">' . $ability . '</label>';
+            //     echo '<input type="number" id="' . $ability . '" min="0" name="' . $ability . '" min="0" max="100" placeholder="50">';
+            // }
             ?>
             <button type="submit" name="submit" value="register">Register</button>
         </form>
