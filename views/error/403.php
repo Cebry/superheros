@@ -11,11 +11,12 @@
 </head>
 
 <body>
-    <header>
-        <h1>ERROR 403</h1>
-    </header>
+    <?php include "../views/header.php"; ?>
     <?php include "../views/nav.php"; ?>
     <main>
+        <header>
+            <h2>Error 403</h2>
+        </header>
         <p>Forbidden</p>
     </main>
 </body>

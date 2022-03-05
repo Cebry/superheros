@@ -12,11 +12,12 @@
 </head>
 
 <body>
-    <header>
-        <h1>Requests</h1>
-    </header>
+    <?php include "../views/header.php"; ?>
     <?php include "../views/nav.php"; ?>
     <main>
+        <header>
+            <h2>Requests</h2>
+        </header>
         <div class="card grid columns-5">
             <span>title</span>
             <span>description</span>

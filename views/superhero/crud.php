@@ -31,14 +31,14 @@
             <?php
             foreach ($data as $superhero) {
                 echo '<div action="" method="post" class="card grid columns-8">';
-                echo '<img src="' . URLBASE . 'img/' . $superhero['image'] . '" alt="">';
+                echo '<img width="50px" src="' . URLBASE . 'img/' . $superhero['image'] . '" alt="">';
                 echo '<div>' . $superhero['id'] . '</div>';
                 echo '<div>' . $superhero['name'] . '</div>';
                 echo '<div>' . $superhero['evolution'] . '</div>';
                 echo '<div>' . $superhero['id_user'] . '</div>';
                 echo '<div>' . $superhero['created_at'] . '</div>';
                 echo '<div>' . $superhero['updated_at'] . '</div>';
-                echo '<div>';
+                echo '<div class="flex-vertical">';
                 echo '<a href="/sh/update/' . $superhero['id'] . '">EDIT</a>';
                 echo '<a href="/sh/delete/' . $superhero['id'] . '">DELETE</a>';
                 echo '</div>';

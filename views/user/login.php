@@ -11,16 +11,19 @@
 </head>
 
 <body>
-    <header>
-        <h1>Login</h1>
-    </header>
+    <?php include "../views/header.php"; ?>
     <?php include "../views/nav.php"; ?>
     <main>
-        <form action="" method="post" class="card grid columns-2">
-            <label for="user">User</label>
-            <input type="text" name="user" id="user" value="">
-            <label for="psw">Password</label>
-            <input type="text" name="psw" id="psw" value="">
+        <header>
+            <h2>Login</h2>
+        </header>
+        <form action="" method="post" class="card flex-vertical">
+            <div class=" grid columns-2">
+                <label for="user">User</label>
+                <input type="text" name="user" id="user" value="">
+                <label for="psw">Password</label>
+                <input type="text" name="psw" id="psw" value="">
+            </div>
             <button type="submit" name="submit" value="login">Log In</button>
         </form>
     </main>

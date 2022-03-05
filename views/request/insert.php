@@ -8,15 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php include "../views/styles.php"; ?>
     <!-- <script src="js/script.js"></script> -->
-    <title>Add Request</title>
+    <title>New request</title>
 </head>
 
 <body>
-    <header>
-        <h1>Add Request</h1>
-    </header>
+    <?php include "../views/header.php"; ?>
     <?php include "../views/nav.php"; ?>
     <main>
+        <header>
+            <h2>New request</h2>
+        </header>
         <div class="card grid columns-3">
             <span>title</span>
             <span>description</span>

@@ -11,11 +11,12 @@
 </head>
 
 <body>
-    <header>
-        <h1>ERROR 404</h1>
-    </header>
+    <?php include "../views/header.php"; ?>
     <?php include "../views/nav.php"; ?>
     <main>
+        <header>
+            <h2>Error 404</h2>
+        </header>
         <p>Page not found</p>
     </main>
 </body>

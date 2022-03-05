@@ -12,21 +12,22 @@
 </head>
 
 <body>
-    <header>
-        <h1>Register Superhero</h1>
-    </header>
+    <?php include "../views/header.php"; ?>
     <?php include "../views/nav.php"; ?>
     <main>
-        <form action="" method="post" enctype="multipart/form-data">
-            <div style="display:flex;">
-                <div class="card grid columns-4">
+        <header>
+            <h2>Register Superhero</h2>
+        </header>
+        <form action="" method="post" enctype="multipart/form-data" class="card flex-vertical">
+            <div style="display:flex; align-items: center;">
+                <div class="card grid columns-2">
                     <label>user</label>
-                    <label>psw</label>
-                    <label>name</label>
-                    <label>image</label>
                     <input type="text" name="user" id="user" value="" required>
-                    <input type="text" name="psw" id="psw" value="" required>
+                    <label>psw</label>
+                    <input type="password" name="psw" id="psw" value="" required>
+                    <label>name</label>
                     <input type="text" name="name" id="name" value="" required>
+                    <label>image</label>
                     <input type="file" id="img" name="img" required>
                 </div>
                 <div class="card grid columns-2">
@@ -42,6 +43,9 @@
             <button type="submit" name="submit" value="register">Register</button>
         </form>
     </main>
+    <aside class="card">
+        <a href="<?php URLBASE ?>img/sh-img.zip" download>Imagenes de ejemplo </a>
+    </aside>
 </body>
 
 </html>

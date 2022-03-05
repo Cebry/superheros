@@ -12,11 +12,12 @@
 </head>
 
 <body>
-    <header>
-        <h1>Delete Superhero</h1>
-    </header>
+    <?php include "../views/header.php"; ?>
     <?php include "../views/nav.php"; ?>
     <main>
+        <header>
+            <h2>Delete Superhero</h2>
+        </header>
         <div class="card grid columns-8">
             <span>id</span>
             <span>name</span>

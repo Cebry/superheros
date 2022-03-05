@@ -12,25 +12,19 @@
 </head>
 
 <body>
-    <header>
-        <h1>Superheroes</h1>
-    </header>
+    <?php include "../views/header.php"; ?>
     <?php include "../views/nav.php"; ?>
     <main>
-        <div class="card grid columns-3">
-            <span>name</span>
-            <span>image</span>
-            <span>evolution</span>
-        </div>
+        <header>
+            <h2>List</h2>
+        </header>
         <?php
         foreach ($data as $superhero) {
-            echo '<div class="grid columns-2">';
-
             echo '<div class="card grid columns-3">';
-            echo '<div>' . $superhero['name'] . '</div>';
             echo '<img src="' . URLBASE . 'img/' . $superhero['image'] . '" alt="">';
-            echo '<div>' . $superhero['evolution'] . '</div>';
-
+            echo '<div>';
+            echo '<h1>' . $superhero['name'] . '</h1>';
+            echo '<p>' . $superhero['evolution'] . '</p>';
             echo '</div>';
 
             echo '<div class="card grid columns-2">';
@@ -38,6 +32,7 @@
                 echo '<div>' . $ability[0] . '</div>';
                 echo '<div>' . $ability[1] . '</div>';
             }
+
             echo '</div>';
             if (array_search($_SESSION['user']['profile'], ['citizen']) > -1) {
                 echo '<form action="/request/new" method="post">
@@ -46,7 +41,6 @@
                 <button type="submit">Request</button>
                 </form>';
             }
-
             echo '</div>';
         }
         ?>

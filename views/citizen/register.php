@@ -8,24 +8,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php include "../views/styles.php"; ?>
     <!-- <script src="js/script.js"></script> -->
-    <title>Add Superhero</title>
+    <title>Register</title>
 </head>
 
 <body>
-    <header>
-        <h1>Add Superhero</h1>
-    </header>
     <?php include "../views/nav.php"; ?>
+    <?php include "../views/header.php"; ?>
     <main>
-        <div class="card grid columns-6">
-            <span>user</span>
-            <span>psw</span>
-            <span>name</span>
-            <span>email</span>
-            <span>actions</span>
-        </div>
-        <form action="" method="post" class="card grid columns-6">
-
+        <header>
+            <h2>Register</h2>
+        </header>
+        <form action="" method="post" class="card grid columns-5">
+            <label for="user">user</label>
+            <label for="psw">psw</label>
+            <label for="name">name</label>
+            <label for="email">email</label>
+            <label for="">actions</label>
             <input type="text" name="user" id="user" value="">
             <input type="text" name="psw" id="psw" value="">
             <input type="text" name="name" id="name" value="">

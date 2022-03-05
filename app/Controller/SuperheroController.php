@@ -155,7 +155,7 @@ class SuperheroController extends BaseController
                     echo '<p>ERROR ' . $e->getMessage() . '</p>';
                 }
             }
-            // header('location: /');
+            header('location: /');
         }
     }
 

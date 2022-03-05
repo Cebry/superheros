@@ -8,8 +8,7 @@
         <li><a href="http://superheroes.local/evolution/list">evolutions</a></li> -->
         <li><a href="<?php echo URLBASE; ?>">Superheros</a></li>
         <li>
-            <form action="<?php echo URLBASE; ?>sh/search" method="get">
-                <label for="name"></label>
+            <form action="<?php echo URLBASE; ?>sh/search" method="get" id="searchForm">
                 <input type="text" id="name" name="name" placeholder="name">
                 <button type="submit"> search</button>
             </form>

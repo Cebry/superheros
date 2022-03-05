@@ -18,7 +18,8 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-
+    margin: 0 auto;
+    width: 80%;
     background: #e2e1e0;
 }
 
@@ -79,17 +80,16 @@ a {
 
 button:not([disabled]):focus,
 button:not([disabled]):hover,
-a :not([disabled]):hover,
-a :not([disabled]):focus {
+a:hover,
+a:focus {
     box-shadow:
         0 0 .25rem rgba(0, 0, 0, 0.5),
         -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5),
         .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
 }
 
-form {
+#searchForm {
     display: flex;
-    flex-direction: column;
 }
 
 input {
@@ -131,4 +131,9 @@ input {
 
 .columns-9 {
     grid-template-columns: repeat(9, 1fr);
+}
+
+.flex-vertical {
+    display: flex;
+    flex-direction: column;
 }
