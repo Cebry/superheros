@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Models\RequestModel;
 use App\Models\SuperheroModel;
-use App\Models\CitizenModel;
 
 class RequestController extends BaseController
 {
@@ -45,6 +44,15 @@ class RequestController extends BaseController
             if ($_POST['submit'] == 'checkDone') {
                 $rm->setId($id);
                 $rm->checkDone();
+
+                $rm = new RequestModel();
+                $rm->setIdSuperhero($_SESSION['superhero']['id']);
+                var_dump($rm->countCheckedFromSuperheroId());
+                if ($rm->countCheckedFromSuperheroId() == 3) {
+                    $sh = new SuperheroModel();
+                    $sh->setId($_SESSION['superhero']['id']);
+                    $sh->setExpert();
+                }
             }
             header('location: /request/list');
         }

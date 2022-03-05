@@ -96,7 +96,7 @@ class AbilityModel extends DBAbstractModel
         } else {
             $this->message = 'Ability no encontrado.';
         }
-        return $this->rows;
+        return $this->rows[0];
     }
 
     public function readAll()

@@ -24,24 +24,21 @@
         </div>
         <?php
         foreach ($data as $superhero) {
-            echo '<div class="card">';
+            echo '<div class="grid columns-2">';
 
             echo '<div class="card grid columns-3">';
             echo '<div>' . $superhero['name'] . '</div>';
-            echo '<div>' . $superhero['image'] . '</div>';
+            echo '<img src="' . URLBASE . 'img/' . $superhero['image'] . '" alt="">';
             echo '<div>' . $superhero['evolution'] . '</div>';
 
             echo '</div>';
 
-
-            // foreach ($superhero['abilities'] as $ability) {
-
-            //     echo '<div class="card grid columns-2">';
-            //     echo '<div>' . $ability['id_ability'] . '</div>';
-            //     echo '<div>' . $ability['value'] . '</div>';
-            //     echo '</div>';
-            // }
-
+            echo '<div class="card grid columns-2">';
+            foreach ($superhero['abilities'] as $ability) {
+                echo '<div>' . $ability[0] . '</div>';
+                echo '<div>' . $ability[1] . '</div>';
+            }
+            echo '</div>';
             if (array_search($_SESSION['user']['profile'], ['citizen']) > -1) {
                 echo '<form action="/request/new" method="post">
                 <input type="text" name="superhero_id" value="' . $superhero['id'] . '" hidden>

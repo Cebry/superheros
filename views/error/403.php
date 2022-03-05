@@ -12,11 +12,11 @@
 
 <body>
     <header>
-        <h1>ERROR 404</h1>
+        <h1>ERROR 403</h1>
     </header>
     <?php include "../views/nav.php"; ?>
     <main>
-        <p>Superhero not found</p>
+        <p>Forbidden</p>
     </main>
 </body>
 

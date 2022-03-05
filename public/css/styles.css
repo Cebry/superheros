@@ -89,6 +89,7 @@ a :not([disabled]):focus {
 
 form {
     display: flex;
+    flex-direction: column;
 }
 
 input {

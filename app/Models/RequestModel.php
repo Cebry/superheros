@@ -25,6 +25,7 @@ class RequestModel extends DBAbstractModel
     private static $readLastPageQuery = "SELECT * FROM request ORDER BY id DESC LIMIT " . REQUESTSPERPAGE;
     private static $readFromSuperheroIdQuery = "SELECT * FROM request WHERE id_superhero = :id_superhero ORDER BY id DESC LIMIT " . REQUESTSPERPAGE;
     private static $checkDoneQuery = "UPDATE request set done=1 WHERE id = :id;";
+    private static $countCheckedFromSuperheroIdQuery = "SELECT * FROM request WHERE id_superhero = :id_superhero and done=1;";
 
     private $id;
     private $title;
@@ -201,5 +202,14 @@ class RequestModel extends DBAbstractModel
         $this->parameters['id'] = $this->getId();
         $this->get_results_from_query();
         return $this->rows;
+    }
+
+    public function countCheckedFromSuperheroId()
+    {
+        $this->query = self::$countCheckedFromSuperheroIdQuery;
+        var_dump($this->getIdSuperhero());
+        $this->parameters['id_superhero'] = $this->getIdSuperhero();
+        $this->get_results_from_query();
+        return sizeof($this->rows);
     }
 };

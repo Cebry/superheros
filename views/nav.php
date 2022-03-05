@@ -21,6 +21,12 @@
         } else {
             if (array_search($_SESSION['user']['profile'], ['beginner', 'expert']) > -1) {
                 echo '<li><a href="' . URLBASE . 'request/list">list my requests</a></li>';
+                // echo '<li>
+                //     <form action="' . URLBASE . 'sh/edit" method="post">
+                //         <input type="text" id="superhero_id" name="superhero_id" value="' . $_SESSION['superhero']['id'] . '" hidden>
+                //         <button>Edit abilities</button>
+                //     </form>
+                // </li>';
             }
 
             if (array_search($_SESSION['user']['profile'], ['expert']) > -1) {

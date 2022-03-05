@@ -26,6 +26,7 @@ class SuperheroModel extends DBAbstractModel
     // private static $readPageQuery = "SELECT * FROM superhero ORDER BY id LIMIT ";
     // private static $readLastPageQuery = "SELECT * FROM superhero ORDER BY id DESC LIMIT :shpage";
     private static $readLastPageQuery = "SELECT * FROM superhero ORDER BY id DESC LIMIT " . SHPERPAGE;
+    private static $setExpertQuery = "UPDATE superhero SET evolution='expert' WHERE id = :id";
 
     private $id;
     private $name;
@@ -171,6 +172,14 @@ class SuperheroModel extends DBAbstractModel
     public function readLastPage()
     {
         $this->query = self::$readLastPageQuery;
+        $this->get_results_from_query();
+        return $this->rows;
+    }
+
+    public function setExpert()
+    {
+        $this->query = self::$setExpertQuery;
+        $this->parameters['id'] = $this->getId();
         $this->get_results_from_query();
         return $this->rows;
     }

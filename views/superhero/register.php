@@ -8,34 +8,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php include "../views/styles.php"; ?>
     <!-- <script src="js/script.js"></script> -->
-    <title>Add Superhero</title>
+    <title>Register Superhero</title>
 </head>
 
 <body>
     <header>
-        <h1>Add Superhero</h1>
+        <h1>Register Superhero</h1>
     </header>
     <?php include "../views/nav.php"; ?>
     <main>
-        <div class="card grid columns-6">
-            <span>user</span>
-            <span>psw</span>
-            <span>name</span>
-            <span>image</span>
-            <span>actions</span>
-        </div>
-        <form action="" method="post" class="card grid columns-6">
+        <form action="" method="post" enctype="multipart/form-data">
+            <div style="display:flex;">
+                <div class="card grid columns-4">
+                    <label>user</label>
+                    <label>psw</label>
+                    <label>name</label>
+                    <label>image</label>
+                    <input type="text" name="user" id="user" value="" required>
+                    <input type="text" name="psw" id="psw" value="" required>
+                    <input type="text" name="name" id="name" value="" required>
+                    <input type="file" id="img" name="img" required>
+                </div>
+                <div class="card grid columns-2">
+                    <?php
+                    foreach ($data as $ability) {
+                        echo '<label for="' . $ability['name'] . '">' . $ability['name']  . '</label>';
+                        echo '<input type="number" id="' . $ability['name'] . '" min="0" name="' . $ability['name']  . '" min="0" max="100" placeholder="50">';
+                    }
+                    ?>
+                </div>
+            </div>
 
-            <input type="text" name="user" id="user" value="">
-            <input type="text" name="psw" id="psw" value="">
-            <input type="text" name="name" id="name" value="">
-            <input type="text" name="image" id="image" value="">
-            <?php
-            // foreach ($data as $ability) {
-            //     echo '<label for="' . $ability . '">' . $ability . '</label>';
-            //     echo '<input type="number" id="' . $ability . '" min="0" name="' . $ability . '" min="0" max="100" placeholder="50">';
-            // }
-            ?>
             <button type="submit" name="submit" value="register">Register</button>
         </form>
     </main>

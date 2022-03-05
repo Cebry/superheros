@@ -12,4 +12,8 @@ class ErrorController extends BaseController
     {
         $this->renderHTML('../views/error/404-superhero.php');
     }
+    function Error403Action()
+    {
+        $this->renderHTML('../views/error/403.php');
+    }
 }

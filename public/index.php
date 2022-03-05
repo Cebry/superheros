@@ -12,9 +12,9 @@ use App\Controller\EvolutionController;
 use App\Controller\ErrorController;
 use App\Core\Router;
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 session_start();
 
@@ -58,7 +58,6 @@ $router->add(array(
     'action' => [UserController::class, 'logOutaction'],
     'profiles' => ['citizen', 'beginner', 'expert']
 ));
-// TODO: actualizar
 $router->add(array(
     'name' => 'request insert',
     'path' => '/^\/request\/new$/',
@@ -79,9 +78,8 @@ $router->add(array(
     'action' => [RequestController::class, 'checkDoneAction'],
     'profiles' => ['beginner', 'expert']
 ));
-// TODO: actualizar para que se inserten habilidades
 $router->add(array(
-    'name' => 'insert Superhero',
+    'name' => 'register Superhero',
     'path' => '/^\/sh\/register$/',
     'action' => [SuperheroController::class, 'registerAction'],
     'profiles' => ['expert']
@@ -89,9 +87,9 @@ $router->add(array(
 // TODO: actualizar para que se inserten habilidades
 $router->add(array(
     'name' => 'update Superhero',
-    'path' => '/^\/sh\/update\/\d+$/',
-    'action' => [SuperheroController::class, 'editAction'],
-    'profiles' => ['expert']
+    'path' => '/^\/sh\/edit$/',
+    'action' => [SuperheroController::class, 'editAbilitiesAction'],
+    'profiles' => ['beginner', 'expert']
 ));
 
 $router->add(array(
@@ -110,6 +108,8 @@ if ($route) {
     if (array_search($_SESSION['user']['profile'], $route['profiles']) > -1) {
         $controller = new $controllerName;
         $controller->$actionName($request);
+    } else {
+        (new ErrorController)->Error403Action();
     }
 } else {
     (new ErrorController)->Error404PageAction();

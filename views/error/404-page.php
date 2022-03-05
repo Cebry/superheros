@@ -12,11 +12,10 @@
 
 <body>
     <header>
-        <h1>Superheros</h1>
+        <h1>ERROR 404</h1>
     </header>
     <?php include "../views/nav.php"; ?>
     <main>
-        <h1>ERROR 404</h1>
         <p>Page not found</p>
     </main>
 </body>

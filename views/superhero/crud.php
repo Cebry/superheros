@@ -19,9 +19,9 @@
     <main>
         <section>
             <div class="card grid columns-8">
+                <span>image</span>
                 <span>id</span>
                 <span>name</span>
-                <span>image</span>
                 <span>evolution</span>
                 <span>id_user</span>
                 <span>created-at</span>
@@ -31,9 +31,9 @@
             <?php
             foreach ($data as $superhero) {
                 echo '<div action="" method="post" class="card grid columns-8">';
+                echo '<img src="' . URLBASE . 'img/' . $superhero['image'] . '" alt="">';
                 echo '<div>' . $superhero['id'] . '</div>';
                 echo '<div>' . $superhero['name'] . '</div>';
-                echo '<div>' . $superhero['image'] . '</div>';
                 echo '<div>' . $superhero['evolution'] . '</div>';
                 echo '<div>' . $superhero['id_user'] . '</div>';
                 echo '<div>' . $superhero['created_at'] . '</div>';

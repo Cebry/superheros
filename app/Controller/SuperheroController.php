@@ -9,19 +9,30 @@ use App\Controller\ErrorController;
 use App\Models\AbilityModel;
 use App\Models\SuperheroAbilityModel;
 
+use Exception;
+
+define('MAX_FILE_SIZE', 500000);
+define('IMG_DIR_PATH', 'img');
 class SuperheroController extends BaseController
 {
     function listAction()
     {
         $sh = new SuperheroModel();
-        $data = $sh->readLastPage();
+        $superheroes = $sh->readLastPage();
         $sam = new SuperheroAbilityModel();
-        // foreach ($data as $sh) {
-        //     $sh['abilities'] = $sam->readBySuperheroId($sh['id']);
-        //     // var_dump($sam->readBySuperheroId($sh['id']));
-        //     var_dump($sh);
-        // }
-        // var_dump($sh);
+        $am = new AbilityModel();
+        $data = array();
+        foreach ($superheroes as $sh) {
+            $shAbs = $sam->readBySuperheroId($sh['id']);
+            $abilities = array();
+            foreach ($shAbs as $shAb) {
+                $ability = $am->read($shAb['id_ability']);
+                array_push($abilities, array($ability['name'], $shAb['value']));
+            }
+
+            $sh['abilities'] = $abilities;
+            array_push($data, $sh);
+        }
         if ($_SESSION['user']['profile'] == 'expert') {
             $this->renderHTML('../views/superhero/crud.php', $data);
         } else {
@@ -31,14 +42,24 @@ class SuperheroController extends BaseController
 
     function searchAction()
     {
-        $sh = new SuperheroModel();
-        $data = $sh->readByName($_GET['name']);
-        if ($data[0] != null) {
-            if ($_SESSION['user']['profile'] == 'expert') {
-                $this->renderHTML('../views/superhero/crud.php', $data);
-            } else {
-                $this->renderHTML('../views/superhero/list.php', $data);
+        $sm = new SuperheroModel();
+        $superheroes = $sm->readByName($_GET['name']);
+        if ($superheroes != null) {
+            $sam = new SuperheroAbilityModel();
+            $am = new AbilityModel();
+            $data = array();
+            foreach ($superheroes as $sh) {
+                $shAbs = $sam->readBySuperheroId($sh['id']);
+                $abilities = array();
+                foreach ($shAbs as $shAb) {
+                    $ability = $am->read($shAb['id_ability']);
+                    array_push($abilities, array($ability['name'], $shAb['value']));
+                }
+
+                $sh['abilities'] = $abilities;
+                array_push($data, $sh);
             }
+            $this->renderHTML('../views/superhero/list.php', $data);
         } else (new ErrorController)->Error404SuperheroAction();
     }
     function editAction($request)
@@ -103,19 +124,58 @@ class SuperheroController extends BaseController
         $data = $am->readAll();
 
         if (!isset($_POST['submit'])) {
-            $am = new AbilityModel();
             $this->renderHTML('../views/superhero/register.php', $data);
         } else {
             if ($_POST['submit'] == 'register') {
-                $um = new UserModel();
-                $um->setUser($_POST['user']);
-                $um->setPsw($_POST['psw']);
-                $um->insert();
-                $sh->setName($_POST['name']);
-                $sh->setImage($_POST['image']);
-                $sh->setEvolution('beginner');
-                $sh->setIdUser($um->lastInsert());
-                $sh->insert();
+
+                $file = $_FILES['img'];
+                $file['name'] = ($_POST['name'] . '.png');
+
+                try {
+                    subirImagen($file);
+                    $um = new UserModel();
+                    $um->setUser($_POST['user']);
+                    $um->setPsw($_POST['psw']);
+                    $um->insert();
+                    $sh->setName($_POST['name']);
+                    $sh->setImage($file['name']);
+                    $sh->setEvolution('beginner');
+                    $sh->setIdUser($um->lastInsert());
+                    $sh->insert();
+                    $sam = new SuperheroAbilityModel();
+                    $sam->setIdSuperhero($sh->lastInsert());
+                    foreach ($data as $ability) {
+                        if (isset($_POST[$ability['name']])) {
+                            $sam->setIdAbility($ability['id']);
+                            $sam->setValue($_POST[$ability['name']]);
+                            $sam->insert();
+                        }
+                    }
+                } catch (Exception $e) {
+                    echo '<p>ERROR ' . $e->getMessage() . '</p>';
+                }
+            }
+            // header('location: /');
+        }
+    }
+
+    function editAbilitiesAction()
+    {
+        $am = new AbilityModel();
+        $data = $am->readAll();
+        if (!isset($_POST['submit'])) {
+            $this->renderHTML('../views/superhero/edit.php', $data);
+        } else {
+            if ($_POST['submit'] == 'edit') {
+                $sam = new SuperheroAbilityModel();
+                $sam->setIdSuperhero($_POST['superhero_id']);
+                foreach ($data as $ability) {
+                    if (isset($_POST[$ability['name']])) {
+                        $sam->setIdAbility($ability['id']);
+                        $sam->setValue($_POST[$ability['name']]);
+                        $sam->insert();
+                    }
+                }
             }
             header('location: /');
         }
@@ -135,5 +195,37 @@ class SuperheroController extends BaseController
             }
             header('location: /');
         }
+    }
+}
+
+// sudo chown www-data DIR/public/img
+function subirImagen($file)
+{
+    $file_path = IMG_DIR_PATH . '/' . basename($file['name']);
+
+    $imageFileType = strtolower(pathinfo($file_path, PATHINFO_EXTENSION));
+
+    if (getimagesize($file) != false) {
+        throw new Exception('El fichero no es una imagen.');
+    }
+
+    if (file_exists($file_path)) {
+        throw new Exception('Ya existe un fichero con ese nombre.');
+    }
+
+    if ($file['size'] > MAX_FILE_SIZE) {
+        throw new Exception('El archivo es demasiado grande.');
+    }
+
+    if (
+        !($imageFileType == 'jpg'
+            || $imageFileType == 'png'
+            || $imageFileType == 'jpeg'
+            || $imageFileType == 'gif')
+    ) {
+        throw new Exception('Solo están permitidos JPG, JPEG, PNG y GIF.');
+    }
+    if (!move_uploaded_file($file['tmp_name'], $file_path)) {
+        throw new Exception('Ha ocurrido un error.');
     }
 }
